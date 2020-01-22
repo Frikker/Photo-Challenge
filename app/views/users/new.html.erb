@@ -7,7 +7,7 @@
         <h3>Providers</h3>
         <ul class="nav nav-list">
           <% if !user_signed_in? %>
-          <li>Sign in by <%= link_to 'Vkontakte', users_omniauth_callbacks_vkontakte_path %></li>
+          <li>Sign in by <%= link_to 'Vkontakte', omniauth_autorize_path(provider) %></li>
           <% end %>
         </ul>
       </div>
