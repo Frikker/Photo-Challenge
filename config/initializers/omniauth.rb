@@ -1,5 +1,5 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :vkontakte, '7290933', 'zpmquqgXJJZhEQr9s9AO',
+  provider :vkontakte, '7291257', 'ttF733XSo1uFbBfXJl4N',
            callback_path: '/users/omniauth_callbacks/vkontakte',
            https: 1,
            image_size: 'original'
