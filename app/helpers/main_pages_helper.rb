@@ -5,6 +5,6 @@ module MainPagesHelper
   end
 
   def logged_in?
-    true
+    false
   end
 end

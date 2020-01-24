@@ -1,9 +1,24 @@
-class UsersController < InheritedResources::Base
+class UsersController < ApplicationController
 
-  private
+  def index
+    @users = User.all
+  end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :provider, :url)
+  def show
+    @user = User.find(session[:user_id])
+  end
+
+  def edit
+    @user = User.find(session[:user_id])
+  end
+
+  def update
+    @user = User.find(session[:user_id])
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
     end
-
+  end
 end

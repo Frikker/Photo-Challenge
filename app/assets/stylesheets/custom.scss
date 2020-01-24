@@ -6,7 +6,7 @@
 
 body {
   z-index: 1;
-  background-color: moccasin;
+  background-color: honeydew;
   padding-top: 50px;
 }
 
@@ -21,7 +21,7 @@ body {
     font-size: 1.7em;
     float: left;
     margin-left: 10px;
-    color: white;
+    color: lightyellow;
     text-shadow: 2px 2px 2px #aaa;
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -31,15 +31,24 @@ body {
       text-decoration: none;
     }
   }
+  .dropdown{
+    .dropdown-menu{
+      h5{
+        margin: 2%;
+        padding-left: 5%;
+      }
+      img{
+        width: 20%;
+        height: 20%;
+        margin-left: 15%;
+        margin-right: 10%;
+        margin-bottom: 3%;
+      }
+    }
+  }
 }
 
 /* content */
-
-content{
-  .container{
-
-  }
-}
 
 /* footer */
 

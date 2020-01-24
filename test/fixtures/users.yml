@@ -3,11 +3,19 @@
 one:
   first_name: MyString
   last_name: MyString
+  token: MyString
   provider: MyString
-  url: MyString
+  uid: MyString
+  nickname: MyString
+  urls: MyString
+  image: MyString
 
 two:
   first_name: MyString
   last_name: MyString
+  token: MyString
   provider: MyString
-  url: MyString
+  uid: MyString
+  nickname: MyString
+  urls: MyString
+  image: MyString

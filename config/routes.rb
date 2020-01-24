@@ -1,17 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   root 'main_pages#index'
   get '/rules', to: 'main_pages#rules'
   get '/contact', to: 'main_pages#contacts'
-  namespace :users do
-    get 'omniauth_callbacks/facebook'
-    get 'omniauth_callbacks/vkontakte'
-  end
-  devise_for :users
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get '/signin', to: 'sessions#new', as: :signin
+  get '/signout', to: 'sessions#destroy', as: :signout
   resources :users
-  get '/signin', to: 'users#new'
-
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

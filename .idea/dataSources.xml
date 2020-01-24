@@ -7,11 +7,29 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://ec2-54-247-188-107.eu-west-1.compute.amazonaws.com:5432/d5oft7doce4tpm</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="postgres@localhost" uuid="437579ac-a235-42cd-aea6-3c3108682eb0">
+    <data-source source="LOCAL" name="Rails photo-challenge: development" uuid="5714b2a0-fcd1-4978-940a-9ba116d6e52e">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/photo_challenge_development</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails photo-challenge: test" uuid="58fdb3c6-e065-4cab-ae68-9101148109ed">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/photo_challenge_test</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="Rails photo-challenge: production" uuid="a67cafe1-61ca-499b-b0e3-6094f3eacfaa">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/config/database.yml</remarks>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1:5432/photo_challenge_production</jdbc-url>
     </data-source>
   </component>
 </project>
