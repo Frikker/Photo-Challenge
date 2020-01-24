@@ -1,0 +1,24 @@
+<div class="row">
+  <aside class="col-md-4">
+    <section>
+      <%= image_tag @user.image %>
+      <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+      <h4><%= @user.photoposts.count %> uploads</h4>
+      <% if @user.photoposts.any? %>
+        <h6><%= @user.photoposts.sum(likes) %> likes</h6>
+      <% else %>
+        <h6> 0 likes </h6>
+      <% end %>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.photoposts.any? %>
+      <h4>All your posts here:</h4>
+      <%= will_paginate @photoposts %>
+      <ol class="uploads">
+        <%= render @photoposts %>
+      </ol>
+      <%= will_paginate @photoposts %>
+    <% end %>
+  </div>
+</div>

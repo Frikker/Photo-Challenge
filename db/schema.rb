@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_23_231320) do
+ActiveRecord::Schema.define(version: 2020_01_24_214006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2020_01_23_231320) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "photoposts", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.integer "likes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "picture"
+    t.index ["user_id", "created_at"], name: "index_photoposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_photoposts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -56,4 +67,5 @@ ActiveRecord::Schema.define(version: 2020_01_23_231320) do
     t.index ["uid"], name: "index_users_on_uid"
   end
 
+  add_foreign_key "photoposts", "users"
 end
