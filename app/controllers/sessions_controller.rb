@@ -5,7 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     auth = request.env['omniauth.auth']
-    user = User.find_by(uid: auth.uid) || User.create_new(auth)
+    provider = auth.provider
+    user = User.find_by(uid: auth.uid) || User.create_new(auth, provider)
     reset_session
     log_in(user)
     redirect_to user, notice: 'Signed in!'
