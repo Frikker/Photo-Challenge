@@ -4,7 +4,7 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
-  def store_location
-    session[:forwarding_url] = request.original_url if request.get?
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end

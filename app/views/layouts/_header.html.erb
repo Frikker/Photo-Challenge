@@ -11,8 +11,8 @@
                 Account <b class="caret"></b>
               </a>
               <div class="dropdown-menu" aria-labelledby="Dropdown">
-                <%= link_to "Profile", user_path, class: 'dropdown-item' %>
-                <%= link_to "Settings", edit_user_path, class: 'dropdown-item' %>
+                <%= link_to "Profile", current_user, class: 'dropdown-item' %>
+                <%= link_to "Settings", edit_user_url(current_user), class: 'dropdown-item' %>
                 <div class="dropdown-divider"></div>
                 <%= link_to "Log out", signout_path, class: 'dropdown-item', method: :delete %>
               </div>
