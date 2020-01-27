@@ -2,8 +2,10 @@
 
 one:
   user: one
-  content: MyText
+  photopost: one
+  parent: one
 
 two:
   user: two
-  content: MyText
+  photopost: two
+  parent: two

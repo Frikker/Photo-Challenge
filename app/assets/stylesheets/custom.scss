@@ -9,13 +9,16 @@ body {
   background-color: honeydew;
   padding-top: 50px;
 }
-
+.icon{
+  width: 3%;
+  height: 3%;
+}
 /* header */
 .navbar{
   background-color: #730E15;
   z-index: 10;
   .navbar-right{
-    margin: 0px 10px;
+    margin: 0 10px;
   }
   #logo{
     font-size: 1.7em;
@@ -49,6 +52,9 @@ body {
 }
 
 /* content */
+.uploads{
+
+}
 
 /* footer */
 

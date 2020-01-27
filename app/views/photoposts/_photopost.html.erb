@@ -1,0 +1,9 @@
+<li id="micropost-<%= photopost.id %>">
+  <%= image_tag photopost.user.image, class: 'img-thumbnail' %>
+  <span class="user"><%= link_to photopost.user.first_name, photopost.user %></span>
+  <span class="content"><%= photopost.content %></span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(photopost.created_at) %> ago.
+  </span>
+  <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path %>
+</li>

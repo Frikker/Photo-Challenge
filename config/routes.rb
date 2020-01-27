@@ -8,5 +8,8 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signin', to: 'sessions#new', as: :signin
   get '/signout', to: 'sessions#destroy', as: :signout
-  resources :users, only: %i[show edit new create index update destroy]
+  resources :users
+  resources :photoposts, only: [:create, :destroy, :show]
+  resources :comments, only: [:create, :destroy]
+
 end

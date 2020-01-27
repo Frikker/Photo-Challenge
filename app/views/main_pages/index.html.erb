@@ -1,0 +1,9 @@
+<div class="md-col-5">
+  <% if @photoposts.any? %>
+    <%= will_paginate @photoposts %>
+    <ul>
+      <%= render @photoposts %>
+    </ul>
+    <%= will_paginate @photoposts %>
+  <% end %>
+</div>
