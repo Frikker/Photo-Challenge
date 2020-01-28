@@ -1,1 +1,11 @@
-<h6><%= @user.first_name %></h6>
+<div class="col-md-5">
+  <h4><%= @photopost.user.first_name %> <%= @photopost.user.last_name %></h4>
+  <h6><%= time_ago_in_words(@photopost.created_at) %> ago</h6>
+  <%= @photopost.content %>
+  <%= @photopost.picture %>
+</div>
+
+<% unless @comment.nil? %>
+    <h6><%= @user.first_name %></h6>
+    <h5> <%= @comment.content %> </h5>
+<% end %>

@@ -17,8 +17,9 @@ class PhotopostsController < ApplicationController
   end
 
   def show
+    @photopost = Photopost.find(params[:id])
     @comment = Comment.find_by(photopost: params[:id])
-    @comment_user = User.find(@comment.user_id)
+    @comment_user = User.find(@comment.user_id) unless @comment.nil?
   end
 
   private
