@@ -1,9 +1,22 @@
-<li id="micropost-<%= photopost.id %>">
-  <%= image_tag photopost.user.image, class: 'img-thumbnail' %>
-  <span class="user"><%= link_to photopost.user.first_name, photopost.user %></span>
-  <span class="content"><%= photopost.content %></span>
-  <span class="timestamp">
+<li id="photopost-<%= photopost.id %>">
+  <%= link_to image_tag(photopost.user.image, class: 'avatar'), photopost.user %>
+  <h4 class="user"><%= link_to photopost.user.first_name, photopost.user %></h4>
+  <h5 class="content"><%= photopost.content %></h5>
+  <h6 class="timestamp">
     Posted <%= time_ago_in_words(photopost.created_at) %> ago.
-  </span>
-  <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
+  </h6>
+  <ul>
+    <% if check_likes(photopost) %>
+      <li>
+        <%= button_to image_tag(image_path('filled_heart.svg'), class: 'icon'), photopost_ratings_path(photopost, photopost.rating.find_by(user_id: current_user)), method: :delete %>
+        <p> <%= photopost.rating.count %></p>
+      </li>
+    <% else %>
+      <%= button_to image_tag(image_path('heart.svg'), class: 'icon'), photopost_ratings_path(photopost), method: :post %>
+      <p> <%= photopost.rating.count %></p>
+    <% end %>
+    <li>
+      <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
+    </li>
+  </ul>
 </li>

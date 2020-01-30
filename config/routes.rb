@@ -9,7 +9,11 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new', as: :signin
   get '/signout', to: 'sessions#destroy', as: :signout
   resources :users
-  resources :photoposts, only: [:create, :destroy, :show]
-  resources :comments, only: [:create, :destroy]
-
+  resources :photoposts, only: [:create, :destroy, :show] do
+    resource :ratings, only: [:create, :destroy]
+  end
+  resources :comments, only: [:create, :destroy] do
+    resource :ratings, only: [:create, :destroy]
+  end
+  resources :ratings, only: [:create, :destroy]
 end

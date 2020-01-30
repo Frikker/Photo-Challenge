@@ -10,8 +10,15 @@ body {
   padding-top: 50px;
 }
 .icon{
-  width: 3%;
+  float: right;
+  width: 2%;
+  height: 2%;
+}
+.avatar{
   height: 3%;
+  width: 3%;
+  border-radius: 100px;
+  border: 2px;
 }
 /* header */
 .navbar{
@@ -53,7 +60,16 @@ body {
 
 /* content */
 .uploads{
-
+  #photopost-\<\%\=\ photopost\.id\ \%\>{
+    ul{
+      margin: 0;
+      padding: 1%;
+      li{
+        display: inline;
+        margin-right: 2%;
+      }
+    }
+  }
 }
 
 /* footer */
