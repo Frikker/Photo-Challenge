@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   resources :photoposts, only: [:create, :destroy, :show] do
     resource :ratings, only: [:create, :destroy]
+    resource :comments, only: [:create, :destroy]
   end
   resources :comments, only: [:create, :destroy] do
     resource :ratings, only: [:create, :destroy]

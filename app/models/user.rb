@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :photoposts, dependent: :destroy
+  has_many :comments
   has_many :likes, dependent: :destroy
   def self.create_new(auth, provider)
     case provider

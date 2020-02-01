@@ -5,15 +5,17 @@
   <h6 class="timestamp">
     Posted <%= time_ago_in_words(photopost.created_at) %> ago.
   </h6>
-  <ul>
+  <ul class="icon-list">
     <% if check_likes(photopost) %>
-      <li>
-        <%= button_to image_tag(image_path('filled_heart.svg'), class: 'icon'), photopost_ratings_path(photopost, photopost.rating.find_by(user_id: current_user)), method: :delete %>
-        <p> <%= photopost.rating.count %></p>
-      </li>
+      <li><%= form_with(url: photopost_ratings_path(photopost), method: 'delete') do |f|%>
+        <%= photopost.rating.count %>
+        <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), class: 'icon', method: 'delete'%>
+      <% end %></li>
     <% else %>
-      <%= button_to image_tag(image_path('heart.svg'), class: 'icon'), photopost_ratings_path(photopost), method: :post %>
-      <p> <%= photopost.rating.count %></p>
+      <li><%= form_with(url: photopost_ratings_path(photopost)) do |f|%>
+        <%= photopost.rating.count %>
+        <%= f.submit '', type: :image, src: image_path('heart.svg'), class: 'icon', method: 'post'%>
+      <% end %></li>
     <% end %>
     <li>
       <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>

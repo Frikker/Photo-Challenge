@@ -20,7 +20,7 @@ class PhotopostsController < ApplicationController
 
   def show
     @photopost = Photopost.find(params[:id])
-    @comment = Comment.find_by_photopost_id(@photopost)
+    @comments = @photopost.comments.paginate(page: params[:page])
     @comment_user = User.find(@comment.user_id) unless @comment.nil?
   end
 

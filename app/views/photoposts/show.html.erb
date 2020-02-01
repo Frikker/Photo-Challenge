@@ -4,8 +4,11 @@
   <%= @photopost.content %>
   <%= @photopost.picture %>
 </div>
-
-<% unless @comment.nil? %>
-    <h6><%= @user.first_name %></h6>
-    <h5> <%= @comment.content %> </h5>
+<% if @comments.any? %>
+  <%= will_paginate @comments %>
+  <ul>
+    <%= render @comments %>
+  </ul>
+  <%= will_paginate @comments %>
 <% end %>
+<%= render 'comments/comment_form' %>

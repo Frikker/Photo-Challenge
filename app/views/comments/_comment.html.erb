@@ -1,4 +1,8 @@
-<h3><%= @user %></h3>
-<div class="col-md-4">
-  <%= @comment.content %>
-</div>
+<li id="comment-<%= comment.id %>">
+  <%= link_to image_tag(comment.user.image, class: 'avatar'), comment.user %>
+  <h4 class="user"><%= link_to comment.user.first_name, comment.user %></h4>
+  <h5 class="content"><%= comment.content %></h5>
+  <h6 class="timestamp">
+    Posted <%= time_ago_in_words(comment.created_at) %> ago.
+  </h6>
+</li>

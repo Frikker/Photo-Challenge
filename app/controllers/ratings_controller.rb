@@ -4,12 +4,12 @@ class RatingsController < ApplicationController
 
   def create
     RatingWorker::RatingCreateWorker.perform_async(current_user.id, @photopost.id)
-
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
     RatingWorker::RatingDestroyWorker.perform_async(current_user.id, @photopost.id)
-
+    redirect_back(fallback_location: root_path)
   end
 
   private

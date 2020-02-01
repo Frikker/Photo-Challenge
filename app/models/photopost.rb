@@ -1,5 +1,6 @@
 class Photopost < ApplicationRecord
   belongs_to :user
+  has_many :comments
   has_many :rating
 
   validates :user_id, presence: true
