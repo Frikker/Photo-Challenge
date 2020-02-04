@@ -9,6 +9,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @photopost = current_user.photoposts.build if signed_in?
     @photoposts = @user.photoposts.paginate(page: params[:page])
+    @likes = 0
+    @photoposts.each { |photopost| @likes += photopost.rating.count }
   end
 
   def edit

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="d5oft7doce4tpm@ec2-54-247-188-107.eu-west-1.compute.amazonaws.com" uuid="d610ebdc-988b-4c07-bffa-eb83b5cecc75">
+    <data-source source="LOCAL" name="d7gu8416d9te0p@ec2-54-228-239-113.eu-west-1.compute.amazonaws.com" uuid="d610ebdc-988b-4c07-bffa-eb83b5cecc75">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-247-188-107.eu-west-1.compute.amazonaws.com:5432/d5oft7doce4tpm</jdbc-url>
+      <jdbc-url>jdbc:postgresql://ec2-54-228-239-113.eu-west-1.compute.amazonaws.com:5432/d7gu8416d9te0p</jdbc-url>
     </data-source>
     <data-source source="LOCAL" name="Rails photo-challenge: development" uuid="5714b2a0-fcd1-4978-940a-9ba116d6e52e">
       <driver-ref>postgresql</driver-ref>

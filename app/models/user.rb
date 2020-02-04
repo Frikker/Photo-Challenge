@@ -16,9 +16,10 @@ class User < ApplicationRecord
         user.image = auth.info.image
       end
     when 'facebook'
+      name = auth.info.name.split(' ')
       create! do |user|
-        user.first_name = auth.info.first_name
-        user.last_name = auth.info.last_name
+        user.first_name = name[0]
+        user.last_name = name[1]
         user.token = auth.credentials.token
         user.provider = auth.provider
         user.uid = auth.uid

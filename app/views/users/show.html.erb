@@ -5,7 +5,7 @@
       <h3><%= @user.first_name %> <%= @user.last_name %></h3>
       <h4><%= @user.photoposts.count %> uploads</h4>
       <% if @user.photoposts.any? %>
-        <h6><!--<%= @photoposts.count %> -->likes</h6>
+        <h6><%= @likes %> likes</h6>
       <% else %>
         <h6> 0 likes </h6>
       <% end %>

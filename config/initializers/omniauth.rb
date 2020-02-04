@@ -4,6 +4,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
            https: 1,
            scope: 'photos',
            image_size: 'original'
-  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+  provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'],
+           scope: 'email,user_photos,public_profile'
 end
 
