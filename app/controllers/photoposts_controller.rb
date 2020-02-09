@@ -4,7 +4,8 @@ class PhotopostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
 
   def create
-    @photopost = current_user.photoposts.build(photopost_params)
+    @photopost = current_user.photoposts.create!(content: params[:photopost][:content],
+                                                 picture: params[:photopost][:picture])
     if @photopost.save
       flash[:success] = 'Uploaded successfully'
     else
@@ -26,8 +27,4 @@ class PhotopostsController < ApplicationController
   end
 
   private
-
-  def photopost_params
-    params.require(:photopost).permit(:content, :picture)
-  end
 end
