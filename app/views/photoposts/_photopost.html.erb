@@ -1,7 +1,8 @@
-<li id="photopost-<%= photopost.id %>">
+<li id="photopost">
   <%= link_to image_tag(photopost.user.image, class: 'avatar'), photopost.user %>
   <h4 class="user"><%= link_to photopost.user.first_name, photopost.user %></h4>
   <h5 class="content"><%= photopost.content %></h5>
+  <%= image_tag photopost.picture.url if photopost.picture? %>
   <h6 class="timestamp">
     Posted <%= time_ago_in_words(photopost.created_at) %> ago.
   </h6>

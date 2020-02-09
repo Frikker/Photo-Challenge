@@ -71,19 +71,19 @@ ul.icon-list{
 }
 
 /* content */
-.uploads{
-  #photopost-\<\%\=\ photopost\.id\ \%\>{
-    ul{
+.uploads {
+  #photopost {
+    ul {
       margin: 0;
       padding: 1%;
-      li{
+
+      li {
         display: inline;
         margin-right: 2%;
       }
     }
   }
 }
-
 /* footer */
 
 footer{

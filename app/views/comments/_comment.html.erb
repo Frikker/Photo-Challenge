@@ -1,8 +1,10 @@
-<li id="comment-<%= comment.id %>">
+<li id="comment">
   <%= link_to image_tag(comment.user.image, class: 'avatar'), comment.user %>
   <h4 class="user"><%= link_to comment.user.first_name, comment.user %></h4>
   <h5 class="content"><%= comment.content %></h5>
   <h6 class="timestamp">
     Posted <%= time_ago_in_words(comment.created_at) %> ago.
   </h6>
+  <%= link_to 'Reply', '#', class: 'comment-form-toggle', onclick: "show_form(#{comment.id})" %>
+  <div class="form-<%= comment.id %>", style="display: none"><%= render 'comments/comment_form', parent_id: comment.id %></div>
 </li>

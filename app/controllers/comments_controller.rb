@@ -4,7 +4,8 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.create!(photopost_id: @photopost.id,
-                                             content: comment_params[:content])
+                                             content: comment_params[:content],
+                                             parent_id: comment_params[:parent])
     if @comment.save
       flash[:success] = 'Comment added successfully'
     else
@@ -24,6 +25,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :parent)
   end
 end
