@@ -5,9 +5,9 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.create!(photopost_id: @photopost.id,
                                              content: comment_params[:content],
-                                             parent_id: comment_params[:parent])
+                                             parent_id: params[:format])
     if @comment.save
-      flash[:success] = 'Comment added successfully'
+      flash[:success] = 'Comment successfully added '
     else
       flash[:danger] = 'Something wrong. Try again'
     end
@@ -21,10 +21,14 @@ class CommentsController < ApplicationController
   private
 
   def create_variables
-    @photopost = Photopost.find(params[:photopost_id])
+    @photopost = if params[:photopost_id].nil?
+                   Comment.find(params[:format]).photopost
+                 else
+                   Photopost.find(params[:photopost_id])
+                 end
   end
 
   def comment_params
-    params.require(:comment).permit(:content, :parent)
+    params.require(:comment).permit(:content)
   end
 end

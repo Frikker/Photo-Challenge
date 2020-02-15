@@ -7,7 +7,7 @@ class Photopost < ApplicationRecord
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 500 }
 
-  def liked?
-    self.rating
-  end
+  scope :custom_order, ->(order_by, ordering) {
+    order(order_by => ordering)
+  }
 end

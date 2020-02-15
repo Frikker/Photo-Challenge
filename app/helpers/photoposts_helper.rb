@@ -1,6 +1,6 @@
 module PhotopostsHelper
   def check_likes(photopost)
-    likes = photopost.liked?
+    likes = photopost.rating
     if likes.nil?
       false
     else

@@ -7,4 +7,8 @@ module MainPagesHelper
   def logged_in?
     false
   end
+
+  def sort_photoposts(order_by, ordering)
+    @photoposts = @photoposts.custom_order(order_by, ordering)
+  end
 end

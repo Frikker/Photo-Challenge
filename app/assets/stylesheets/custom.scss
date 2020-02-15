@@ -9,28 +9,8 @@ body {
   background-color: honeydew;
   padding-top: 50px;
 }
-ul.icon-list{
+ul{
   list-style: none;
-  .like-button{
-    background-color: rgba(255,255,255,0);
-    background-image: none;
-    &:hover{
-      background-color: rgba(255,255,255,0);
-    }
-  }
-  .icon{
-    display: inline;
-    float: right;
-    width: 2%;
-    height: 2%;
-  }
-}
-
-.avatar{
-  height: 3%;
-  width: 3%;
-  border-radius: 100px;
-  border: 2px;
 }
 /* header */
 .navbar{
@@ -71,24 +51,67 @@ ul.icon-list{
 }
 
 /* content */
-.uploads {
-  #photopost {
-    ul {
-      margin: 0;
-      padding: 1%;
 
-      li {
-        display: inline;
-        margin-right: 2%;
+.container{
+  .md-col-5{
+    ul{
+      padding-bottom: 1%;
+      float: right;
+      margin: 1px;
+    }
+  }
+  tr {
+    height: 500px;
+    .content {
+      height: 400px;
+      .text-content{
+        height: 15%;
+      }
+      .image-content{
+        align-content: center;
+      }
+    }
+    td{
+      background-color: #d8fcff;
+      border: 1px ridge #d1dcff;
+      padding-left: 1%;
+    }
+    #photopost {
+      .avatar {
+        height: 10%;
+        width: 10%;
+        border-radius: 100px;
+        border: 2px;
+      }
+      ul {
+        bottom: 0;
+        display: inline-table;
+      }
+      .icon-list {
+        height: 100px;
+
+        .like-button {
+          background-color: rgba(255, 255, 255, 0);
+          background-image: none;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0);
+          }
+        }
+        .icon {
+          width: 5%;
+          height: 5%;
+        }
       }
     }
   }
 }
+
 /* footer */
 
 footer{
-  position: absolute;
+  position: fixed;
   width: 100%;
+  height: 4%;
   bottom: 0;
   color: white;
   background-color: #730E15;

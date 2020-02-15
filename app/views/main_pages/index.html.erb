@@ -1,9 +1,21 @@
 <div class="md-col-5">
   <% if @photoposts.any? %>
-    <%= will_paginate @photoposts %>
+    <% options = options_for_select(
+        [
+            ['By upload date (from old to new)', @photoposts.custom_order('created_at', 'asc')],
+            ['By upload date (from new to old)', @photoposts.custom_order('created_at', 'desc')],
+            ['By rating (from unliked to famous)', @photoposts.custom_order('ratings', 'asc')],
+            ['By rating (from famous to unliked)', @photoposts.custom_order('ratings', 'desc')]
+
+        ], 'By upload date (from old to new)'
+    ) %>
     <ul>
-      <%= render @photoposts %>
+      <li><%= will_paginate @photoposts %></li>
+      <li><%= select_tag 'Sort by', options %></li>
     </ul>
+    <table>
+      <%= render @photoposts %>
+    </table>
     <%= will_paginate @photoposts %>
   <% end %>
 </div>

@@ -1,8 +1,8 @@
 <div class="col-md-5">
   <h4><%= @photopost.user.first_name %> <%= @photopost.user.last_name %></h4>
   <h6><%= time_ago_in_words(@photopost.created_at) %> ago</h6>
-  <%= @photopost.content %>
-  <%= @photopost.picture %>
+  <h5><%= @photopost.content %></h5>
+  <%= image_tag(image_path(@photopost.picture)) %>
 </div>
 <% if @comments.any? %>
   <%= will_paginate @comments %>
@@ -11,4 +11,4 @@
   </ul>
   <%= will_paginate @comments %>
 <% end %>
-<%= render 'comments/comment_form' %>
+<%= render 'comments/comment_form', path_to_create: photopost_comments_path(params[:id]) %>
