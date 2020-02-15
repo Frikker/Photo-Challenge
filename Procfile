@@ -1,1 +1,1 @@
-ratingworker: bundle exec sidekiq -c 2
+ratingworker: bundle exec sidekiq -c 5 -v
