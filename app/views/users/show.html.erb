@@ -17,9 +17,9 @@
     <% if @user.photoposts.any? %>
       <h4>All your posts here:</h4>
       <%= will_paginate @photoposts %>
-      <ol class="uploads">
+      <table class="uploads">
         <%= render @photoposts %>
-      </ol>
+      </table>
       <%= will_paginate @photoposts %>
     <% end %>
   </div>

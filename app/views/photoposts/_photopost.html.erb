@@ -1,11 +1,10 @@
-<% if @photoposts.index(photopost)%3 == 0 %>
+<% if photopost_counter%3 == 0 %>
   <tr>
 <% end %>
   <td id="photopost">
     <div class="content">
       <h5 class="text-content"><%= photopost.content %></h5>
       <div class="image-content"><%= image_tag photopost.picture.url if photopost.picture? %></div>
-
     </div>
     <ul class="icon-list">
       <h6 class="timestamp">
