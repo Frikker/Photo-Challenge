@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
   def create
     auth = request.env['omniauth.auth'].to_hash
     provider = auth['provider']
-    user = Users::CreateUser.run!(auth: auth, provider: provider, user: User.new)
+    user = Users::Create.run!(auth: auth, provider: provider, user: User.new)
     if user.valid?
       reset_session
       log_in(user)
