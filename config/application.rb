@@ -20,5 +20,6 @@ module PhotoChallenge
     config.eager_load_paths += %W[#{config.root}/app/workers]
 
     config.autoload_paths += %W[#{config.root}/app/interactions]
+    config.eager_load_paths += %W[#{config.root}/app/interactions]
   end
 end
