@@ -1,19 +1,21 @@
 <div class="md-col-5">
   <% if @photoposts.any? %>
-    <% options = options_for_select(
-        [
-            ['By upload date (from old to new)', @photoposts.custom_order('created_at', 'asc')],
-            ['By upload date (from new to old)', @photoposts.custom_order('created_at', 'desc')],
-            ['By rating (from unliked to famous)', @photoposts.custom_order('ratings', 'asc')],
-            ['By rating (from famous to unliked)', @photoposts.custom_order('ratings', 'desc')]
-
-        ], 'By upload date (from old to new)'
-    ) %>
     <ul>
       <li><%= will_paginate @photoposts %></li>
-      <li><%= select_tag 'Sort by', options %></li>
+      <li>
+        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sort by
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-item"><%= link_to 'By upload date ▼ ', root_path({order_by: 'created_at', order_type: 'desc'}) %></div>
+          <div class="dropdown-item"><%= link_to 'By upload date ▲ ', root_path({order_by: 'created_at', order_type: 'asc'}) %></div>
+          <div class="dropdown-item"><%= link_to 'By rating ▼ ', root_path({order_by: 'rating_count', order_type: 'desc'}) %></div>
+          <div class="dropdown-item"><%= link_to 'By rating ▲ ', root_path({order_by: 'rating_count', order_type: 'asc'}) %></div>
+          <div class="dropdown-item"><%= link_to 'By comments ▼ ', root_path({order_by: 'comments_count', order_type: 'desc'}) %></div>
+          <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
+        </div></li>
     </ul>
-    <table>
+    <table class="main-page-table">
       <%= render @photoposts %>
     </table>
     <%= will_paginate @photoposts %>

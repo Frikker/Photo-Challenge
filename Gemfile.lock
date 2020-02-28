@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (5.0.6)
+      concurrent-ruby (~> 1.0)
     actioncable (6.0.2.1)
       actionpack (= 6.0.2.1)
       nio4r (~> 2.0)
@@ -37,6 +39,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_interaction (3.7.1)
+      activemodel (>= 4, < 7)
     activeadmin (2.6.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (~> 3.1)
@@ -329,6 +333,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
+  active_interaction
   activeadmin
   bootsnap (>= 1.4.2)
   bootstrap-sass

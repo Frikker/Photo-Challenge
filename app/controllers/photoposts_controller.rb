@@ -7,7 +7,7 @@ class PhotopostsController < ApplicationController
     @photopost = current_user.photoposts.create!(content: params[:photopost][:content],
                                                  picture: params[:photopost][:picture])
     if @photopost.save
-      flash[:success] = 'Uploaded successfully'
+      flash[:success] = 'successfully Uploaded '
     else
       flash[:danger] = 'Something wrong. Try again'
     end

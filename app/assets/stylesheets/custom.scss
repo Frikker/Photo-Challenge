@@ -12,6 +12,36 @@ body {
 ul{
   list-style: none;
 }
+a{
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+
+#photopost {
+  .avatar {
+    height: 10%;
+    width: 10%;
+    border-radius: 100px;
+    border: 2px;
+  }
+  ul {
+    bottom: 0;
+    display: inline-table;
+  }
+  .like-button {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: none;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0);
+    }
+  }
+  .icon {
+    width: 5%;
+    height: 5%;
+  }
+}
 /* header */
 .navbar{
   background-color: #730E15;
@@ -28,10 +58,6 @@ ul{
     text-transform: uppercase;
     letter-spacing: -1px;
     padding-top: 10px;
-    text-decoration: none;
-    &:hover{
-      text-decoration: none;
-    }
   }
   .dropdown{
     .dropdown-menu{
@@ -59,47 +85,52 @@ ul{
       float: right;
       margin: 1px;
     }
-  }
-  tr {
-    height: 500px;
-    .content {
-      height: 400px;
-      .text-content{
-        height: 15%;
-      }
-      .image-content{
-        align-content: center;
-      }
-    }
-    td{
-      background-color: #d8fcff;
-      border: 2px ridge #d1dcff;
-      padding-left: 1%;
-    }
-    #photopost {
-      .avatar {
-        height: 10%;
-        width: 10%;
-        border-radius: 100px;
-        border: 2px;
-      }
-      ul {
-        bottom: 0;
-        display: inline-table;
-      }
-      .icon-list {
-        height: 100px;
-
-        .like-button {
-          background-color: rgba(255, 255, 255, 0);
-          background-image: none;
-          &:hover {
-            background-color: rgba(255, 255, 255, 0);
+    .main-page-table{
+      tr {
+        height: 500px;
+        .content {
+          height: 400px;
+          .text-content{
+            height: 15%;
           }
+          .image-content{
+            align-content: center;
+          }
+
         }
-        .icon {
-          width: 5%;
-          height: 5%;
+        .icon-list {
+          height: 100px;
+        }
+        td{
+          background-color: #d8fcff;
+          border: 2px ridge #d1dcff;
+          padding-left: 1%;
+        }
+      }
+    }
+  }
+  .col-md-8{
+    .uploads{
+      tr {
+        height: 300px;
+        .content {
+          height: 250px;
+          .text-content{
+            font-size: 0.81em;
+            height: 15%;
+          }
+          .image-content{
+            align-content: center;
+          }
+
+        }
+        .icon-list {
+          height: 50px;
+        }
+        td{
+          background-color: #d8fcff;
+          border: 2px ridge #d1dcff;
+          padding-left: 1%;
         }
       }
     }

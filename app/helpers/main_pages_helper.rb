@@ -8,7 +8,7 @@ module MainPagesHelper
     false
   end
 
-  def sort_photoposts(order_by, ordering)
-    @photoposts = @photoposts.custom_order(order_by, ordering)
+  def new_line(photopost)
+    (@photoposts.index(photopost) % 3).zero?
   end
 end

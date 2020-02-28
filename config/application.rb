@@ -16,7 +16,9 @@ module PhotoChallenge
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     #
-    config.autoload_paths += %W(#{config.root}/app/workers)
-    config.eager_load_paths += %W(#{config.root}/app/workers)
+    config.autoload_paths += %W[#{config.root}/app/workers]
+    config.eager_load_paths += %W[#{config.root}/app/workers]
+
+    config.autoload_paths += %W[#{config.root}/app/interactions]
   end
 end
