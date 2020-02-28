@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Users
-  class CreateUser < ActiveInteraction::Base
+  class Create < ActiveInteraction::Base
     hash :auth,
          strip: false
     string :provider
