@@ -16,7 +16,7 @@ class Photopost < ApplicationRecord
       order_by = 'created_at'
       order_type = 'asc' if order_type.blank?
     end
-    order(order_by => order_type)
+    where(aasm_state: :approved).order(order_by => order_type)
   }
 
   aasm do
@@ -33,7 +33,7 @@ class Photopost < ApplicationRecord
       transitions from: %i[:moderating :approved], to: :banned
     end
 
-    event :delete do
+    event :delete_post do
       transitions from: %i[:banned :approved], to: :deleted
     end
 

@@ -3,10 +3,11 @@ class CommentsController < ApplicationController
   before_action :logged_in_user
 
   def create
-    @comment = current_user.comments.create!(photopost_id: @photopost.id,
-                                             content: comment_params[:content],
-                                             parent_id: params[:format])
-    if @comment.save
+    @comment = Comments::CreateComment.run(user: current_user,
+                                           photopost_id: @photopost.id,
+                                           content: comment_params[:content],
+                                           parent_id: params[:format].to_i)
+    if @comment.valid?
       flash[:success] = 'Comment successfully added '
     else
       flash[:danger] = 'Something wrong. Try again'
