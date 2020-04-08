@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -25,6 +26,7 @@ gem 'redis', '~> 4.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'kaminari'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -33,6 +35,7 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'annotate'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
@@ -57,8 +60,8 @@ end
 gem 'aasm'
 gem 'active_interaction'
 gem 'activeadmin'
+
 gem 'bootstrap-sass'
-gem 'bootstrap-will_paginate'
 gem 'carrierwave'
 gem 'devise'
 gem 'mini_magick'
@@ -67,4 +70,3 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 gem 'sidekiq'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'will_paginate'

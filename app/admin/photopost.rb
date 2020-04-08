@@ -15,7 +15,50 @@ ActiveAdmin.register Photopost do
     selectable_column
     column :content
     column :photo do |post|
-      image_tag post.picture.admin.url
+      image_tag post.picture.admin.url unless post.picture.url.nil?
     end
+    column :aasm_state
+    column :moderation do |pg|
+      columns do
+        if pg.aasm_state == 'moderating'
+          column do
+            link_to 'approve', approve_admin_photopost_path(pg), class: 'button2'
+          end
+          column do
+            link_to 'ban', ban_admin_photopost_path(pg), class: 'button1'
+          end
+        elsif pg.aasm_state == 'approved'
+          column do
+            link_to 'ban', ban_admin_photopost_path(pg), class: 'button1'
+          end
+        elsif pg.aasm_state == 'deleted'
+          column do
+            link_to 'restore', restore_admin_photopost_path(pg), class: 'button2'
+          end
+        else
+          column do
+            link_to 'approve', approve_admin_photopost_path(pg), class: 'button2'
+          end
+        end
+      end
+    end
+  end
+
+  member_action :approve do
+    photo = Photopost.find_by(id: params[:id])
+    resource.approve!
+    redirect_to admin_photoposts_path
+  end
+
+  member_action :ban do
+    photo = Photopost.find_by(id: params[:id])
+    resource.ban!
+    PhotopostWorker::DeletePhotopost.perform_in(1.day, params[:id])
+    redirect_to admin_photoposts_path
+  end
+
+  member_action :restore do
+    resource.restore!
+    redirect_to admin_photoposts_path
   end
 end

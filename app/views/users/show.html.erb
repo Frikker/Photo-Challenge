@@ -16,11 +16,11 @@
     <%= render 'photoposts/photopost_form' %>
     <% if @user.photoposts.any? %>
       <h4>All your posts here:</h4>
-      <%= will_paginate @photoposts %>
+      <%= paginate @photoposts %>
       <table class="uploads">
         <%= render @photoposts %>
       </table>
-      <%= will_paginate @photoposts %>
+      <%= paginate @photoposts %>
     <% end %>
   </div>
 </div>

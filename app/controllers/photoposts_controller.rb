@@ -4,8 +4,9 @@ class PhotopostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
 
   def create
-    @photopost = current_user.photoposts.create!(content: params[:photopost][:content],
-                                                 picture: params[:photopost][:picture])
+    @photopost = Photoposts::Create.run!(content: params[:photopost][:content],
+                                         picture: params[:photopost][:picture],
+                                         user: current_user)
     if @photopost.save
       flash[:success] = 'successfully Uploaded '
     else
@@ -22,7 +23,11 @@ class PhotopostsController < ApplicationController
 
   def show
     @photopost = Photopost.find(params[:id])
-    @comments = @photopost.comments.paginate(page: params[:page])
+    if @photopost.user != current_user && (@photopost.banned? || @photopost.moderating?)
+      flash[:danger] = 'There is no post with that id'
+      redirect_to root_url
+    end
+    @comments = @photopost.comments.page(params[:page])
     @comment_user = User.find(@comment.user_id) unless @comment.nil?
   end
 

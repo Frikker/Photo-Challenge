@@ -18,14 +18,13 @@ a{
     text-decoration: none;
   }
 }
-
+.avatar {
+  height: 10%;
+  width: 10%;
+  border-radius: 100px;
+  border: 2px;
+}
 #photopost {
-  .avatar {
-    height: 10%;
-    width: 10%;
-    border-radius: 100px;
-    border: 2px;
-  }
   ul {
     bottom: 0;
     display: inline-table;
@@ -86,6 +85,7 @@ a{
       margin: 1px;
     }
     .main-page-table{
+      table-layout: fixed;
       tr {
         height: 500px;
         .content {
@@ -102,6 +102,7 @@ a{
           height: 100px;
         }
         td{
+          width: 33%;
           background-color: #d8fcff;
           border: 2px ridge #d1dcff;
           padding-left: 1%;
@@ -128,6 +129,7 @@ a{
           height: 50px;
         }
         td{
+          width: 33%;
           background-color: #d8fcff;
           border: 2px ridge #d1dcff;
           padding-left: 1%;

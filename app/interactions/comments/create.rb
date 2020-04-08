@@ -1,17 +1,19 @@
 # frozen_string_literal: true
 
 module Comments
-  class CreateComment < ActiveInteraction::Base
+  class Create < ActiveInteraction::Base
     integer :photopost_id
-    integer :parent_id
+    integer :parent_id, default: nil
     object :user
     string :content
 
-    def to_model
-      Comment.create
+    def execute
+      create_comment
     end
 
-    def execute
+    private
+
+    def create_comment
       user.comments.create!(photopost_id: photopost_id, content: content, parent_id: parent_id)
     end
   end

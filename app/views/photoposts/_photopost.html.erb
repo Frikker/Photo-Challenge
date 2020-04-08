@@ -3,6 +3,7 @@
 <% end %>
   <td id="photopost">
     <div class="content">
+      <h6> <%= photopost.aasm_state %></h6>
       <h5 class="text-content"><%= photopost.content %></h5>
       <div class="image-content"><%= image_tag photopost.picture.url if photopost.picture? %></div>
     </div>
@@ -31,3 +32,8 @@
       </li>
     </ul>
   </td>
+<% if photopost == @photoposts.last && !((@photoposts.count % 3).zero?) %>
+  <% (3 - (@photoposts.count % 3)).times do %>
+    <%= render 'photoposts/empty_photopost_cell' %>
+  <% end %>
+<% end %>
