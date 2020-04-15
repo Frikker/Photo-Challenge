@@ -3,9 +3,16 @@
 <% end %>
   <td id="photopost">
     <div class="content">
-      <h6> <%= photopost.aasm_state %></h6>
+      <% if params[:controller] == 'users' %>
+        <h6> <%= photopost.aasm_state %></h6>
+      <% end %>
       <h5 class="text-content"><%= photopost.content %></h5>
-      <div class="image-content"><%= image_tag photopost.picture.url if photopost.picture? %></div>
+      <div class="image-content">
+        <% if photopost.picture? %>
+          <%= image_tag photopost.picture.url if params[:controller] == 'main_pages' %>
+          <%= image_tag photopost.picture.users.url if params[:controller] == 'users' %>
+        <% end %>
+      </div>
     </div>
     <ul class="icon-list">
       <h6 class="timestamp">

@@ -1,13 +1,15 @@
 ActiveAdmin.register Photopost do
-  batch_action I18n.t(:ban) do |ids|
+  batch_action 'ban' do |ids|
     batch_action_collection.find(ids).each(&:ban!)
+    PhotopostWorker::DeletePhotopost.perform_in(5.minute, params[:id])
+
   end
 
-  batch_action I18n.t(:approve) do |ids|
+  batch_action 'approve' do |ids|
     batch_action_collection.find(ids).each(&:approve!)
   end
 
-  batch_action I18n.t(:delete) do |ids|
+  batch_action 'delete' do |ids|
     batch_action_collection.find(ids).each(&:delete_post!)
   end
 
@@ -53,7 +55,7 @@ ActiveAdmin.register Photopost do
   member_action :ban do
     photo = Photopost.find_by(id: params[:id])
     resource.ban!
-    PhotopostWorker::DeletePhotopost.perform_in(1.day, params[:id])
+    PhotopostWorker::DeletePhotopost.perform_in(5.minute, params[:id])
     redirect_to admin_photoposts_path
   end
 

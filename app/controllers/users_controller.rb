@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @photopost = current_user.photoposts.build if signed_in?
     @photoposts = @user.photoposts.order(aasm_state: :asc).page(params[:page])
+    @banned_photoposts = @photoposts.where(aasm_state: 'banned')
     @likes = 0
     @photoposts.each { |photopost| @likes += photopost.rating.count }
   end
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     if @user.update(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = 'Profile updated'
       redirect_to @user
     else
       render 'edit'

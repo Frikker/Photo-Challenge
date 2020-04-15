@@ -16,6 +16,7 @@
     <%= render 'photoposts/photopost_form' %>
     <% if @user.photoposts.any? %>
       <h4>All your posts here:</h4>
+      <%= banned_photoposts %>
       <%= paginate @photoposts %>
       <table class="uploads">
         <%= render @photoposts %>
