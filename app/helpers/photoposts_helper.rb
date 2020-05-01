@@ -4,7 +4,7 @@ module PhotopostsHelper
     if likes.nil?
       false
     else
-      likes.find_by(user_id: current_user)
+      likes.find_by(user_id: @current_user)
     end
   end
 end
