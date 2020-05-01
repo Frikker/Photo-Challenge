@@ -8,7 +8,7 @@ module Users
 
     def execute
       user = User.new
-      "#{provider}_user".call(user)
+      send "#{provider}_user", user
       errors.merge!(user.errors) unless user.save
       user
     end

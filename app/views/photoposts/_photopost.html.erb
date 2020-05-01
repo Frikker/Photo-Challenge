@@ -1,7 +1,7 @@
 <% if (photopost_counter%3).zero? %>
   <tr>
 <% end %>
-  <td id="photopost">
+  <td id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
       <% if params[:controller] == 'users' %>
         <h6> <%= photopost.aasm_state %></h6>
@@ -26,12 +26,12 @@
         <% if check_likes(photopost) %>
           <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}", method: 'delete') do |f|%>
             <%= photopost.rating.count %>
-            <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'likes-#{photopost.id}')", class: 'icon', method: 'delete'%>
+            <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'photopost-#{photopost.id}')", class: 'icon', method: 'delete'%>
           <% end %>
         <% else %>
           <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}") do |f|%>
             <%= photopost.rating.count %>
-            <%= f.submit '', type: :image, src: image_path('heart.svg'), onclick: "update_block('likes-#{photopost.id}')", class: 'icon', method: 'post'%>
+            <%= f.submit '', type: :image, src: image_path('heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'photopost-#{photopost.id}')", class: 'icon', method: 'post'%>
           <% end %>
         <% end %>
       </li>
@@ -47,7 +47,7 @@
   <% end %>
 <% end %>
 <script>
-    function update_block(block){
-        $('.'+block).html("<%= escape_javascript photopost.rating.count %>");
+    function update_block(url, block){
+        $('.'+block).load(url + ' ' + block);
     }
 </script>
