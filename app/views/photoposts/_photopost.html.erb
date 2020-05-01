@@ -22,18 +22,20 @@
         <li><%= link_to image_tag(photopost.user.image, class: 'avatar'), photopost.user %></li>
         <li><h4 class="user"><%= link_to photopost.user.first_name, photopost.user %></h4></li>
       </ul></li>
-      <% if check_likes(photopost) %>
-        <li><%= form_with(url: photopost_ratings_path(photopost), method: 'delete') do |f|%>
-          <%= photopost.rating.count %>
-          <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), class: 'icon', method: 'delete'%>
-        <% end %></li>
-      <% else %>
-        <li><%= form_with(url: photopost_ratings_path(photopost)) do |f|%>
-          <%= photopost.rating.count %>
-          <%= f.submit '', type: :image, src: image_path('heart.svg'), class: 'icon', method: 'post'%>
-        <% end %></li>
-      <% end %>
-      <li>
+      <li class="likes">
+        <% if check_likes(photopost) %>
+          <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}", method: 'delete') do |f|%>
+            <%= photopost.rating.count %>
+            <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'likes-#{photopost.id}')", class: 'icon', method: 'delete'%>
+          <% end %>
+        <% else %>
+          <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}") do |f|%>
+            <%= photopost.rating.count %>
+            <%= f.submit '', type: :image, src: image_path('heart.svg'), onclick: "update_block('likes-#{photopost.id}')", class: 'icon', method: 'post'%>
+          <% end %>
+        <% end %>
+      </li>
+      <li class="comments">
         <%= photopost.comments.count %>
         <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
       </li>
@@ -44,3 +46,8 @@
     <%= render 'photoposts/empty_photopost_cell' %>
   <% end %>
 <% end %>
+<script>
+    function update_block(block){
+        $('.'+block).html("<%= escape_javascript photopost.rating.count %>");
+    }
+</script>

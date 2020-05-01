@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[index edit update destroy]
 
@@ -12,6 +14,7 @@ class UsersController < ApplicationController
     @banned_photoposts = @photoposts.where(aasm_state: 'banned')
     @likes = 0
     @photoposts.each { |photopost| @likes += photopost.rating.count }
+    flash[:danger] = "You Got #{@banned_photoposts.count} Photopost Under Delete" if @banned_photoposts.any?
   end
 
   def edit

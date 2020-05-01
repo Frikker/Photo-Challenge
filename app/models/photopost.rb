@@ -35,8 +35,9 @@ class Photopost < ApplicationRecord
 
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 500 }
+  validates :picture, presence: true
 
-  scope :custom_order, ->(order_by, order_type) {
+  scope :custom_order, ->(order_by = 'created_at', order_type = 'asc') {
     if order_by.blank?
       order_by = 'created_at'
       order_type = 'asc' if order_type.blank?

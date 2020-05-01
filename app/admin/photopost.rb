@@ -1,16 +1,14 @@
 ActiveAdmin.register Photopost do
-  batch_action 'ban' do |ids|
-    batch_action_collection.find(ids).each(&:ban!)
-    PhotopostWorker::DeletePhotopost.perform_in(5.minute, params[:id])
 
+  batch_action 'ban' do |ids|
+    batch_action_collection.find(ids).each do |post|
+      post.ban!
+      PhotopostWorker::DeletePhotopost.perform_in(5.minute, post.id)
+    end
   end
 
   batch_action 'approve' do |ids|
     batch_action_collection.find(ids).each(&:approve!)
-  end
-
-  batch_action 'delete' do |ids|
-    batch_action_collection.find(ids).each(&:delete_post!)
   end
 
   index do

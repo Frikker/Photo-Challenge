@@ -3,13 +3,17 @@ class RatingsController < ApplicationController
   before_action :create_variables
 
   def create
-    RatingWorker::RatingCreateWorker.perform_async(current_user.id, @photopost.id)
-    redirect_back(fallback_location: root_path)
+    Ratings::Create.run!(user_id: current_user.id, photopost_id: @photopost.id)
   end
 
   def destroy
-    RatingWorker::RatingDestroyWorker.perform_async(current_user.id, @photopost.id)
-    redirect_back(fallback_location: root_path)
+    like = Rating.find_by(user_id: current_user.id, photopost_id: @photopost.id)
+    if like.nil?
+      flash[:danger] = 'Something went wrong'
+      redirect_back(fallback_location: request.original_url)
+    else
+      like.destroy
+    end
   end
 
   private

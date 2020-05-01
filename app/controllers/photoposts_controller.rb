@@ -23,7 +23,7 @@ class PhotopostsController < ApplicationController
 
   def show
     @photopost = Photopost.find(params[:id])
-    if @photopost.user != current_user && (@photopost.banned? || @photopost.moderating?)
+    if @photopost.user != current_user && @photopost.approved?
       flash[:danger] = 'There is no post with that id'
       redirect_to root_url
     end
@@ -32,4 +32,6 @@ class PhotopostsController < ApplicationController
   end
 
   private
+
+
 end

@@ -3,6 +3,16 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  namespace :api do
+    namespace :v1 do
+      resources :photoposts
+      resources :ratings
+      resources :users
+      resources :comments
+    end
+  end
+
   root 'main_pages#index'
   get '/rules', to: 'main_pages#rules'
   get '/contact', to: 'main_pages#contacts'
