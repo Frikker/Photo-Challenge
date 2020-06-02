@@ -55,7 +55,7 @@ a{
     color: lightyellow;
     text-shadow: 2px 2px 2px #aaa;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: 0.2px;
     padding-top: 10px;
   }
   .dropdown{
@@ -76,8 +76,8 @@ a{
 }
 
 /* content */
-
-.container{
+body>.container{
+  margin-top: 2%;
   .md-col-5{
     ul{
       padding-bottom: 1%;
@@ -134,6 +134,25 @@ a{
           border: 2px ridge #d1dcff;
           padding-left: 1%;
         }
+      }
+    }
+  }
+  .rating{
+    margin: 2% 20%;
+    width: 70%;
+    .table-header{
+      height: 5%;
+      .table-avatar{
+        width: 20%;
+      }
+      .table-name{
+        width: 50%;
+      }
+      .table-rating-counter{
+        width: 15%;
+      }
+      .table-photopost-counter{
+        width: 15%;
       }
     }
   }

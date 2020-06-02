@@ -1,19 +1,19 @@
-<%= form_with(model: @photopost) do |f| %>
-  <div class="field">
+<%= form_with(model: @photopost, authenticity_token: current_user.authenticity_token) do |f| %>
+  <div class="field", style="margin-top: 1%">
     <%= f.text_area :content, placeholder: "Compose new micropost..." %>
   </div>
-  <%= f.submit "Post", class: "btn btn-primary" %>
-  <span class="image">
-    <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png" %>
+  <span>
+    <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png", class: 'image' %>
   </span>
+  <%= f.submit "Post", class: "btn btn-primary", style: 'margin-top: 1%' %>
 <% end %>
 
 <script type="text/javascript">
-    $("#photopost_image").bind("change", function() {
+    $(".image").bind("change", function() {
         const size_in_megabytes = this.files[0].size/1024/1024;
         if (size_in_megabytes > 5) {
             alert("Maximum file size is 5MB. Please choose a smaller file.");
-            $("#micropost_image").val("");
+            $(".image").val("");
         }
     });
 </script>

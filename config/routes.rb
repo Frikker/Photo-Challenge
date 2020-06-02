@@ -6,10 +6,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :photoposts
-      resources :ratings
+      resources :photoposts do
+        get '/ratings', to: 'ratings#index', as: :photoposts_ratings
+        resource :ratings, only: %i[create destroy], defaults: { format: 'js' }
+        resource :comments, only: %i[create destroy]
+      end
       resources :users
-      resources :comments
     end
   end
 
@@ -22,10 +24,11 @@ Rails.application.routes.draw do
 
   resources :users
   resources :photoposts, only: %i[create destroy show] do
-    resource :ratings, only: %i[create destroy]
-    resource :comments, only: %i[create destroy]
-  end
-  resources :comments, only: %i[create destroy] do
-    resource :ratings, only: %i[create destroy]
+    get '/rating', to: 'ratings#index', as: :rating
+    post '/rating', to: 'ratings#like', as: :like, format: :js
+    delete '/rating', to: 'ratings#unlike', as: :unlike, format: :js
+    resource :comments, only: %i[create destroy] do
+      resource :ratings, only: %i[create destroy]
+    end
   end
 end

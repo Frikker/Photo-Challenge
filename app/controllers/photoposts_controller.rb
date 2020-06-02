@@ -4,13 +4,17 @@ class PhotopostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
 
   def create
-    @photopost = Photoposts::Create.run!(content: params[:photopost][:content],
-                                         picture: params[:photopost][:picture],
-                                         user: current_user)
-    if @photopost.save
-      flash[:success] = 'successfully Uploaded '
+    if params[:photopost][:picture].nil?
+      flash[:danger] = 'Photo is missing'
     else
-      flash[:danger] = 'Something wrong. Try again'
+      @photopost = Photoposts::Create.run!(content: params[:photopost][:content],
+                                           picture: params[:photopost][:picture],
+                                           user: current_user)
+      if @photopost.save
+        flash[:success] = 'successfully Uploaded '
+      else
+        flash[:danger] = 'Something wrong. Try again'
+      end
     end
     redirect_to user_url(current_user)
   end
@@ -30,8 +34,5 @@ class PhotopostsController < ApplicationController
     @comments = @photopost.comments.page(params[:page])
     @comment_user = User.find(@comment.user_id) unless @comment.nil?
   end
-
-  private
-
 
 end

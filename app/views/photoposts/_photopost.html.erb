@@ -24,20 +24,16 @@
       </ul></li>
       <li class="likes">
         <% if check_likes(photopost) %>
-          <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}", method: 'delete') do |f|%>
-            <%= photopost.rating.count %>
-            <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'photopost-#{photopost.id}')", class: 'icon', method: 'delete'%>
-          <% end %>
+          <div class="likes-counter"><%= photopost.rating.count %></div>
+          <%= link_to image_tag(image_path('filled_heart.svg'), class: 'icon'), photopost_unlike_path(photopost.id), method: :delete  %>
         <% else %>
-          <%= form_with(url: photopost_ratings_path(photopost), class: "likes-#{photopost.id}") do |f|%>
-            <%= photopost.rating.count %>
-            <%= f.submit '', type: :image, src: image_path('heart.svg'), onclick: "update_block('#{request.original_fullpath}', 'photopost-#{photopost.id}')", class: 'icon', method: 'post'%>
-          <% end %>
+          <div class="likes-counter"><%= photopost.rating.count %></div>
+          <%= link_to image_tag(image_path('heart.svg'), class: 'icon'), photopost_like_path(photopost.id), method: :post %>
         <% end %>
       </li>
       <li class="comments">
         <%= photopost.comments.count %>
-        <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
+        <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id), onclick: "show_photopost()" %>
       </li>
     </ul>
   </td>
@@ -46,8 +42,3 @@
     <%= render 'photoposts/empty_photopost_cell' %>
   <% end %>
 <% end %>
-<script>
-    function update_block(url, block){
-        $('.'+block).load(url + ' ' + block);
-    }
-</script>

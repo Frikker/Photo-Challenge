@@ -12,4 +12,9 @@ class ApplicationController < ActionController::Base
   def signed_in?
     !current_user.nil?
   end
+
+  def verify_authenticity_token
+    token = request.headers['token']
+    @api_user = User.find_by(authenticity_token: token)
+  end
 end

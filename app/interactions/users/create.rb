@@ -8,6 +8,7 @@ module Users
 
     def execute
       user = User.new
+      user.authenticity_token = create_auth_token
       send "#{provider}_user", user
       errors.merge!(user.errors) unless user.save
       user
@@ -35,6 +36,10 @@ module Users
       user.nickname = auth['extra']['raw_info']['username']
       user.urls = auth['extra']['raw_info']['link']
       user.image = auth['info']['image']
+    end
+
+    def create_auth_token
+      SecureRandom.hex(10)
     end
   end
 end
