@@ -231,7 +231,11 @@ GEM
     pg (1.2.3)
     polyamorous (2.3.2)
       activerecord (>= 5.2.1)
+<<<<<<< HEAD
     public_suffix (4.0.5)
+=======
+    public_suffix (4.0.4)
+>>>>>>> 7449663061a5c1e63e1dc4422d2b217c8d995fe2
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.2)
@@ -363,7 +367,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-vkontakte
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rails (~> 6.0.2, >= 6.0.2.1)
   redis (~> 4.0)
   sass-rails (>= 6)
