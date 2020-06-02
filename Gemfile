@@ -67,7 +67,7 @@ gem 'devise'
 gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'omniauth-vkontakte'
+gem 'omniauth-vkontakte', '>= 1.6.0'
 gem 'sidekiq'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'active_model_serializers'
