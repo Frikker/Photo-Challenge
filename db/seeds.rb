@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
-password = SecureRandom.gen_random(10)
+password = SecureRandom.base64(10)
 puts password
 AdminUser.create!(email: 'stolpnikk.97@gmail.com', password: password, password_confirmation: password)
 
