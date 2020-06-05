@@ -1,1 +1,1 @@
-$('.likes-counter').html("<%= escape_javascript @photopost.rating.count %>")
+$('.likes').html('<%= escape_javascript render 'like_form' %>')

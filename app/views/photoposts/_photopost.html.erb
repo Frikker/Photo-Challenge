@@ -24,17 +24,17 @@
       </ul></li>
       <li class="likes">
         <% if check_likes(photopost) %>
-          <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: current_user.authenticity_token) do |f|%>
-            <span class="likes">
-              <strong class="likes-counter"><%= photopost.rating.count %></strong>
-              <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), format: :js, class: 'icon', method: 'delete'%>
+          <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: authenticity_token) do |f|%>
+            <span class="likes-counter">
+              <%= photopost.rating.count %>
+              <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), class: 'icon', method: 'delete'%>
             </span>
           <% end %>
         <% else %>
-          <%= form_with(url: photopost_ratings_path(photopost), class: "like", authenticity_token: current_user.authenticity_token, data: {type: 'script'}) do |f|%>
-            <span class="likes">
-              <strong class="likes-counter"><%= photopost.rating.count %></strong>
-              <%= f.submit '', type: :image, src: image_path('heart.svg'), format: :js, class: 'icon', method: 'post'%>
+          <%= form_with url: photopost_ratings_path(photopost), class: "like", authenticity_token: authenticity_token do |f|%>
+            <span class="likes-counter">
+              <%= photopost.rating.count %>
+              <%= f.submit '', type: :image, src: image_path('heart.svg'), class: 'icon', method: 'post'%>
             </span>
           <% end %>
         <% end %>
