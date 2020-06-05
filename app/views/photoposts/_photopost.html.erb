@@ -3,7 +3,7 @@
 <% end %>
   <td id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
-      <% if params[:controller] == 'users' %>
+      <% if params[:controller] == 'users' && photopost.aasm_state != 'approved'%>
         <h6> <%= photopost.aasm_state %></h6>
       <% end %>
       <h5 class="text-content"><%= photopost.content %></h5>
@@ -24,11 +24,19 @@
       </ul></li>
       <li class="likes">
         <% if check_likes(photopost) %>
-          <div class="likes-counter"><%= photopost.rating.count %></div>
-          <%= link_to image_tag(image_path('filled_heart.svg'), class: 'icon'), photopost_unlike_path(photopost.id), method: :delete  %>
+          <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: current_user.authenticity_token) do |f|%>
+            <span class="likes">
+              <strong class="likes-counter"><%= photopost.rating.count %></strong>
+              <%= f.submit '', type: :image, src: image_path('filled_heart.svg'), format: :js, class: 'icon', method: 'delete'%>
+            </span>
+          <% end %>
         <% else %>
-          <div class="likes-counter"><%= photopost.rating.count %></div>
-          <%= link_to image_tag(image_path('heart.svg'), class: 'icon'), photopost_like_path(photopost.id), method: :post %>
+          <%= form_with(url: photopost_ratings_path(photopost), class: "like", authenticity_token: current_user.authenticity_token, data: {type: 'script'}) do |f|%>
+            <span class="likes">
+              <strong class="likes-counter"><%= photopost.rating.count %></strong>
+              <%= f.submit '', type: :image, src: image_path('heart.svg'), format: :js, class: 'icon', method: 'post'%>
+            </span>
+          <% end %>
         <% end %>
       </li>
       <li class="comments">

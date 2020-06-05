@@ -1,9 +1,14 @@
 function show_form(comment_id){
     $(".form-"+comment_id)[0].style.display = "block";
 }
-
-
-
 function show_photopost(){
     $(document).add()
 }
+$('.icon').click(function(){
+    $.ajax({
+        type : 'GET',
+        url : '/:controller/:action/',
+        dataType : 'script'
+    });
+    return false;
+});

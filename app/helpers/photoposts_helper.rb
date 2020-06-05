@@ -1,10 +1,7 @@
+# frozen_string_literal: true
+
 module PhotopostsHelper
   def check_likes(photopost)
-    likes = photopost.rating
-    if likes.nil?
-      false
-    else
-      likes.find_by(user_id: @current_user)
-    end
+    !photopost.rating.find_by(user_id: current_user).nil?
   end
 end

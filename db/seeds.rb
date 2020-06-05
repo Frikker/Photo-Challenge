@@ -8,7 +8,6 @@
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 password = SecureRandom.base64(10)
-puts password
 AdminUser.create!(email: 'stolpnikk.97@gmail.com', password: password, password_confirmation: password)
 
 #30.times do

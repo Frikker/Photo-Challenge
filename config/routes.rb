@@ -24,9 +24,7 @@ Rails.application.routes.draw do
 
   resources :users
   resources :photoposts, only: %i[create destroy show] do
-    get '/rating', to: 'ratings#index', as: :rating
-    post '/rating', to: 'ratings#like', as: :like, format: :js
-    delete '/rating', to: 'ratings#unlike', as: :unlike, format: :js
+    resource :ratings, only: %i[create destroy], defaults: { format: :js }
     resource :comments, only: %i[create destroy] do
       resource :ratings, only: %i[create destroy]
     end

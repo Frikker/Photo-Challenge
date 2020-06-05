@@ -4,7 +4,6 @@ class RatingsController < ApplicationController
 
   def create
     Ratings::Create.run!(user_id: current_user.id, photopost_id: @photopost.id)
-    debug
     respond
   end
 
@@ -19,20 +18,15 @@ class RatingsController < ApplicationController
     respond
   end
 
-  def index
-    render 'index'
-  end
-
-  def respond
-    respond_to do |format|
-      format.js
-    end
-  end
-
   private
 
   def create_variables
     @photopost = Photopost.find(params[:photopost_id])
-    @rating = @photopost.rating.all
+  end
+
+  def respond
+    respond_to do |format|
+      format.js { render layout: false }
+    end
   end
 end
