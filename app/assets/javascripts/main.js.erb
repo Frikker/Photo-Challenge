@@ -1,14 +1,10 @@
 function show_form(comment_id){
     $(".form-"+comment_id)[0].style.display = "block";
 }
-function show_photopost(){
-    $(document).add()
+
+function highlight(comment_id) {
+    $('#comment-'+comment_id)[0].style.background = "rgba(0,255,150,0.5)";
+    setTimeout(function () {
+        $('#comment-'+comment_id)[0].style.background = "none";
+    }, 2000)
 }
-$('.icon').click(function(){
-    $.ajax({
-        type : 'GET',
-        url : '/:controller/:action/',
-        dataType : 'script'
-    });
-    return false;
-});

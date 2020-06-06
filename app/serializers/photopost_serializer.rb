@@ -27,4 +27,5 @@ class PhotopostSerializer < ActiveModel::Serializer
   attributes :id, :content, :picture, :user_id
 
   belongs_to :user
+  has_many :comments
 end

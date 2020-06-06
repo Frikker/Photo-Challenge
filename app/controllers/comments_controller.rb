@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     @comment = Comments::Create.run(user: current_user,
                                     photopost_id: @photopost.id,
                                     content: comment_params[:content],
-                                    parent_id: params[:format].blank? ? params[:format].to_i : nil)
+                                    parent_id: params[:comment_id].blank? ? nil : params[:comment_id].to_i)
     if @comment.valid?
       flash[:success] = 'Comment successfully added '
     else

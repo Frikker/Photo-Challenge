@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :photoposts do
         get '/ratings', to: 'ratings#index', as: :photoposts_ratings
-        resource :ratings, only: %i[create destroy], defaults: { format: 'js' }
+        resource :ratings, only: %i[create destroy]
         resource :comments, only: %i[create destroy]
       end
       resources :users
@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :photoposts, only: %i[create destroy show] do
     resource :ratings, only: %i[create destroy], defaults: { format: :js }
     resource :comments, only: %i[create destroy] do
+      resource :comments, only: %i[create destroy], as: :reply
       resource :ratings, only: %i[create destroy]
     end
   end

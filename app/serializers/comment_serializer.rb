@@ -29,5 +29,5 @@ class CommentSerializer < ActiveModel::Serializer
 
   belongs_to :photopost
   belongs_to :user
-  belongs_to :comment, class_name: 'Comment', optional: true
+  belongs_to :parent, class_name: 'Comment', optional: true
 end

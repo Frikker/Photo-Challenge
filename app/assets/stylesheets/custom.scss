@@ -78,6 +78,7 @@ a{
 /* content */
 body>.container{
   margin-top: 2%;
+  padding-bottom: 5%;
   .md-col-5{
     ul{
       padding-bottom: 1%;
@@ -135,6 +136,17 @@ body>.container{
           padding-left: 1%;
         }
       }
+    }
+  }
+  .post{
+    width: 100%;
+    text-align: center;
+  }
+  .comments{
+    width: 100%;
+    .avatar{
+      height: 5%;
+      width: 3%;
     }
   }
   .rating{
