@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'main_pages#contacts'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signin', to: 'sessions#new', as: :signin
-  get '/signout', to: 'sessions#destroy', as: :signout
+  delete '/signout', to: 'sessions#destroy', as: :signout
 
   resources :users
   resources :photoposts, only: %i[create destroy show] do
