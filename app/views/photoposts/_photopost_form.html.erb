@@ -4,6 +4,7 @@
   </div>
   <span>
     <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png", class: 'image' %>
+    <%= link_to 'Upload from VK', '#', id: 'vk_photo'%>
   </span>
   <%= f.submit "Post", class: "btn btn-primary", style: 'margin-top: 1%' %>
 <% end %>
@@ -15,5 +16,11 @@
             alert("Maximum file size is 5MB. Please choose a smaller file.");
             $(".image").val("");
         }
+    });
+    $('#vk_photo').click(function () {
+        let window = document.createElement('div');
+        window.class = 'vk-photos';
+        window.innerHTML = "<%= render 'photoposts/vk_photos' %>";
+        $('#content').append(window);
     });
 </script>

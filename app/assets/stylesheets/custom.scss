@@ -8,16 +8,25 @@ body {
   z-index: 1;
   background-color: honeydew;
   padding-top: 50px;
+  a{
+    background: transparent;
+    text-decoration: none;
+    &:link{
+      text-decoration: none;
+    }
+    &:hover{
+      text-decoration: none;
+    }
+  }
 }
 ul{
   list-style: none;
 }
-a{
-  text-decoration: none;
-  &:hover{
-    text-decoration: none;
-  }
+
+.glyphicon-vk:before{
+  content: url('../images/vk.svg');
 }
+
 .avatar {
   height: 10%;
   width: 10%;
@@ -43,7 +52,7 @@ a{
 }
 /* header */
 .navbar{
-  background-color: #730E15;
+  background-color: #333;
   z-index: 10;
   .navbar-right{
     margin: 0 10px;
@@ -79,6 +88,12 @@ a{
 body>.container{
   margin-top: 2%;
   padding-bottom: 5%;
+  .vk-photos{
+    z-index: 11;
+    background: rgba(0,0,0,0.7);
+    position: absolute;
+  }
+
   .md-col-5{
     ul{
       padding-bottom: 1%;

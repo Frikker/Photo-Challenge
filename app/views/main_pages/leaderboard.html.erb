@@ -1,0 +1,9 @@
+<table class="leader">
+  <% @leaderboard.each do |leader| %>
+  <tr>
+    <td><%= "#{leader[:first_name]} #{leader[:last_name]}" %></td>
+    <td><%= link_to '', leader[:page], class: "glyphicon glyphicon-cloud" %></td>
+    <td><%= leader[:likes] %></td>
+  </tr>
+  <% end %>
+</table>

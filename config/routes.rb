@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   root 'main_pages#index'
-  get '/rules', to: 'main_pages#rules'
+  get '/leaderboard', to: 'main_pages#leaderboard'
   get '/contact', to: 'main_pages#contacts'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signin', to: 'sessions#new', as: :signin

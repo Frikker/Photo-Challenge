@@ -9,6 +9,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(uid: auth['uid']) || Users::Create.run!(auth: auth, provider: provider)
     if @user.valid?
       reset_session
+      unless @user.token == auth['credentials']['token']
+        @user.token = auth['credentials']['token']
+        @user.save
+      end
       log_in(@user)
       redirect_to @user, notice: 'Signed in!'
     else

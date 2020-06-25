@@ -22,7 +22,7 @@
         <li><%= link_to image_tag(photopost.user.image, class: 'avatar'), photopost.user %></li>
         <li><h4 class="user"><%= link_to photopost.user.first_name, photopost.user %></h4></li>
       </ul></li>
-      <li class="likes">
+      <li class="likes-<%= photopost.id %>">
         <% if check_likes(photopost) %>
           <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: authenticity_token) do |f|%>
             <span class="likes-counter">
