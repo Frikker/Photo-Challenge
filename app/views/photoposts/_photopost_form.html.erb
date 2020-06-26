@@ -14,11 +14,6 @@
 <%= render 'photoposts/vk_photos' %>
 
 <script type="text/javascript">
-    let modal, overlay;
-    if (typeof modal == 'undefined') {
-        modal = $('.vk-photos')[0];
-        overlay = $('.overlay')[0];
-    }
     $(".image").bind("change", function() {
         const size_in_megabytes = this.files[0].size/1024/1024;
         if (size_in_megabytes > 5) {
@@ -30,13 +25,12 @@
     $('.vk_photo').click(function (event) {
 
         event.preventDefault();
-
-        modal.classList.add('is-shown');
-        overlay.classList.add('is-shown');
+        $('.vk-photos')[0].classList.add('is-shown');
+        $('.overlay')[0].classList.add('is-shown');
     });
 
     $('.modal__cross').click(function () {
-        modal.classList.remove('is-shown');
-        overlay.classList.remove('is-shown');
+        $('.vk-photos')[0].classList.remove('is-shown');
+        $('.overlay')[0].classList.remove('is-shown');
     })
 </script>
