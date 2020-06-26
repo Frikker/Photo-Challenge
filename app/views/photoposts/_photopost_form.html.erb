@@ -1,15 +1,24 @@
+<% @photos = PhotopostsHelper::Vkontakte.new(current_user).vk_photos['response']['items'] %>
 <%= form_with(model: @photopost, authenticity_token: current_user.authenticity_token) do |f| %>
   <div class="field", style="margin-top: 1%">
-    <%= f.text_area :content, placeholder: "Compose new micropost..." %>
+    <%= f.text_area :content, placeholder: "Compose new photopost..." %>
   </div>
   <span>
     <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png", class: 'image' %>
-    <%= link_to 'Upload from VK', '#', id: 'vk_photo'%>
+    <%= f.hidden_field :remote_picture_url, id: 'photo_url' %>
+    <%= link_to 'Upload from VK', '#', class: 'vk_photo'%>
   </span>
   <%= f.submit "Post", class: "btn btn-primary", style: 'margin-top: 1%' %>
 <% end %>
 
+<%= render 'photoposts/vk_photos' %>
+
 <script type="text/javascript">
+    let modal, overlay;
+    if (typeof modal == 'undefined') {
+        modal = $('.vk-photos')[0];
+        overlay = $('.overlay')[0];
+    }
     $(".image").bind("change", function() {
         const size_in_megabytes = this.files[0].size/1024/1024;
         if (size_in_megabytes > 5) {
@@ -17,10 +26,17 @@
             $(".image").val("");
         }
     });
-    $('#vk_photo').click(function () {
-        let window = document.createElement('div');
-        window.class = 'vk-photos';
-        window.innerHTML = "<%= render 'photoposts/vk_photos' %>";
-        $('#content').append(window);
+
+    $('.vk_photo').click(function (event) {
+
+        event.preventDefault();
+
+        modal.classList.add('is-shown');
+        overlay.classList.add('is-shown');
     });
+
+    $('.modal__cross').click(function () {
+        modal.classList.remove('is-shown');
+        overlay.classList.remove('is-shown');
+    })
 </script>
