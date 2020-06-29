@@ -5,7 +5,7 @@
         <% if i%3 == 0 %>
           <tr>
         <% end %>
-          <% photo_m_size = photo['sizes'].select {|size| size['type'] >= 'y'} %>
+          <% photo_m_size = photo['sizes'].select {|size| size['type'] >= 'x'} %>
           <td class="photo-selector"><%= link_to image_tag(photo_m_size[0]['url']), '#' %></td>
       <% end %>
     <% end %>
@@ -21,11 +21,9 @@
 <script>
   $('.photo-selector').click(function (event) {
       event.preventDefault();
-      let url = $('#photo_url')[0];
-      url.src = url.value = this.children[0].children[0].src;
-      url.type = 'image';
+      $('#photo')[0].src = $('#photo_url')[0].value = this.children[0].children[0].src;
+      $('.image')[0].value = null;
       $('.vk-photos')[0].classList.remove('is-shown');
       $('.overlay')[0].classList.remove('is-shown');
-
   })
 </script>

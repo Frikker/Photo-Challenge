@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :vkontakte, ENV['VKONTAKTE_KEY'], ENV['VKONTAKTE_SECRET'],
+  provider :vkontakte, '7291257', '9sOdVLVU64Z9SQyyJRWh',
            callback_path: '/auth/vkontakte/callback',
            https: 1,
            scope: %w[email photos offline wall],

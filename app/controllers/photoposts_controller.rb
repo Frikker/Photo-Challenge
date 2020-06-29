@@ -6,7 +6,7 @@ class PhotopostsController < ApplicationController
   def create
     if params[:photopost][:content].blank?
       flash[:danger] = 'You forgot about your emotions:) Text something'
-    elsif params[:photopost][:picture].nil? && params[:photopost][:remote_picture_url].nil?
+    elsif params[:photopost][:picture].nil? && params[:photopost][:remote_picture_url].blank?
       flash[:danger] = 'Photo is missing'
     else
       @photopost = Photoposts::Create.run!(content: params[:photopost][:content],

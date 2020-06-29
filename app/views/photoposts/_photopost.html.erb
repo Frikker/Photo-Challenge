@@ -18,10 +18,9 @@
       <h6 class="timestamp">
         Posted <%= time_ago_in_words(photopost.created_at) %> ago.
       </h6>
-      <li><ul>
-        <li><%= link_to image_tag(photopost.user.image, class: 'avatar'), photopost.user %></li>
-        <li><h4 class="user"><%= link_to photopost.user.first_name, photopost.user %></h4></li>
-      </ul></li>
+      <li class="user-link">
+        <%= link_to image_tag(photopost.user.image, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
+      </li>
       <li class="likes-<%= photopost.id %>">
         <% if check_likes(photopost) %>
           <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: authenticity_token) do |f|%>

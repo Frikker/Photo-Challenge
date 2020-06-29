@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_to root_path unless current_user
     @user = User.find(params[:id])
     @photopost = current_user.photoposts.build if signed_in?
     @photoposts = @user.photoposts.order(aasm_state: :asc).page(params[:page])

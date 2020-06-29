@@ -11,10 +11,11 @@ class MainPagesController < ApplicationController
     @photoposts.each do |photopost|
       post = @leaderboard.select { |post| post[:page] == photopost.user.urls }
       if post.empty?
-        @leaderboard << { first_name: photopost.user.first_name,
-                         last_name: photopost.user.last_name,
-                         page: photopost.user.urls,
-                         likes: photopost.rating_count }
+        @leaderboard << { photo: photopost.user.image,
+                          first_name: photopost.user.first_name,
+                          last_name: photopost.user.last_name,
+                          page: photopost.user.urls,
+                          likes: photopost.rating_count }
       else
         post[0][:likes] += photopost.rating_count
       end
