@@ -1,5 +1,5 @@
 ActiveAdmin.register Photopost do
-
+  menu priority: 1
   batch_action 'ban' do |ids|
     batch_action_collection.find(ids).each do |post|
       post.ban!
@@ -51,7 +51,6 @@ ActiveAdmin.register Photopost do
   end
 
   member_action :ban do
-    photo = Photopost.find_by(id: params[:id])
     resource.ban!
     PhotopostWorker::DeletePhotopost.perform_in(5.minute, params[:id])
     redirect_to admin_photoposts_path
