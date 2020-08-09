@@ -6,6 +6,7 @@
 #
 #  id             :bigint           not null, primary key
 #  aasm_state     :string
+#  ban_reason     :string
 #  comments_count :integer          default(0)
 #  content        :text
 #  picture        :string

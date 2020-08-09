@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new', as: :signin
   delete '/signout', to: 'sessions#destroy', as: :signout
 
-  resources :users
+  resources :users, only: %i[create destroy show edit]
   resources :photoposts, only: %i[create destroy show] do
     resource :ratings, only: %i[create destroy], defaults: { format: :js }
     resource :comments, only: %i[create destroy] do

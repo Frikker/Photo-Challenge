@@ -11,7 +11,8 @@ class MainPagesController < ApplicationController
     @photoposts.each do |photopost|
       post = @leaderboard.select { |post| post[:page] == photopost.user.urls }
       if post.empty?
-        @leaderboard << { photo: photopost.user.image,
+        @leaderboard << { id: photopost.user.id,
+                          photo: photopost.user.image,
                           first_name: photopost.user.first_name,
                           last_name: photopost.user.last_name,
                           page: photopost.user.urls,
@@ -21,7 +22,7 @@ class MainPagesController < ApplicationController
       end
     end
 
-    @leaderboard.sort_by { |post| post[:likes] }
+    @leaderboard.sort_by { |post| post[:likes] }.reverse
   end
 
   def contacts

@@ -60,7 +60,8 @@ end
 gem 'aasm'
 gem 'active_interaction'
 gem 'activeadmin'
-
+gem 'activeadmin_addons'
+gem 'active_skin'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'devise'

@@ -13,7 +13,9 @@
   </aside>
 
   <div class="col-md-8">
-    <%= render 'photoposts/photopost_form' %>
+    <% if @user == current_user %>
+      <%= render 'photoposts/photopost_form' %>
+    <% end %>
     <% if @user.photoposts.any? %>
       <h4>All your posts here:</h4>
       <%= paginate @photoposts %>

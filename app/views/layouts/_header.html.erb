@@ -2,36 +2,37 @@
   <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
       <%= link_to "Photo challenge",  root_path, id: 'logo'%>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to 'Leaderboard', leaderboard_path %></li>
-          <% if signed_in? %>
-            <li><%= link_to 'Upload photo', current_user %></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <div class="dropdown-menu" aria-labelledby="Dropdown">
-                <%= link_to "Profile", current_user, class: 'dropdown-item' %>
-                <%= link_to "Settings", edit_user_url(current_user), class: 'dropdown-item' %>
-                <div class="dropdown-divider"></div>
-                <%= link_to "Log out", signout_path, class: 'dropdown-item', method: :delete %>
-              </div>
-            </li>
-          <% else %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Sign In
-              </a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <h5>Choose one to log in <br></h5>
-                <%= link_to image_tag('vk.svg'), signin_path('vkontakte'), class: 'dropdown-item' %>
-                <%= link_to image_tag('facebook.svg'), signin_path('facebook'), class: 'dropdown-item' %>
-              </div>
-            </li>
-          <% end %>
-        </ul>
-      </nav>
+      <ul class="nav navbar-nav navbar-right">
+
+        <% if signed_in? %>
+
+          <li class="avatar-link"><%= link_to image_tag(current_user.image), current_user %></li>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Account <b class="caret"></b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="Dropdown">
+              <div><%= link_to "Profile", current_user, class: 'dropdown-item' %></div>
+              <div><%= link_to "Settings", edit_user_url(current_user), class: 'dropdown-item' %></div>
+              <div class="dropdown-divider"></div>
+              <div><%= link_to "Log out", signout_path, class: 'dropdown-item', method: :delete %></div>
+            </div>
+          </li>
+          <li><%= link_to 'Upload photo', current_user %></li>
+        <% else %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sign In
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <h5>Choose one to log in <br></h5>
+              <%= link_to image_tag('vk.svg'), signin_path('vkontakte'), class: 'dropdown-item' %>
+              <%= link_to image_tag('facebook.svg'), signin_path('facebook'), class: 'dropdown-item' %>
+            </div>
+          </li>
+        <% end %>
+        <li><%= link_to 'Leaderboard', leaderboard_path %></li>
+      </ul>
     </div>
   </div>
 </header>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Photopost do
   menu priority: 1
   batch_action 'ban' do |ids|
@@ -11,33 +13,33 @@ ActiveAdmin.register Photopost do
     batch_action_collection.find(ids).each(&:approve!)
   end
 
-  index do
+  index as: :table do
     selectable_column
     column :content
     column :photo do |post|
       image_tag post.picture.admin.url unless post.picture.url.nil?
     end
-    column :aasm_state
-    column :moderation do |pg|
+    state_column :aasm_state
+    column :moderation do |post|
       columns do
-        if pg.aasm_state == 'moderating'
+        if post.aasm_state == 'moderating'
           column do
-            link_to 'approve', approve_admin_photopost_path(pg), class: 'button2'
+            link_to 'approve', approve_admin_photopost_path(post), class: 'button2'
           end
           column do
-            link_to 'ban', ban_admin_photopost_path(pg), class: 'button1'
+            link_to 'ban', ban_admin_photopost_path(post), class: 'button1'
           end
-        elsif pg.aasm_state == 'approved'
+        elsif post.aasm_state == 'approved'
           column do
-            link_to 'ban', ban_admin_photopost_path(pg), class: 'button1'
+            link_to 'ban', ban_admin_photopost_path(post), class: 'button1'
           end
-        elsif pg.aasm_state == 'deleted'
+        elsif post.aasm_state == 'deleted'
           column do
-            link_to 'restore', restore_admin_photopost_path(pg), class: 'button2'
+            link_to 'restore', restore_admin_photopost_path(post), class: 'button3'
           end
         else
           column do
-            link_to 'approve', approve_admin_photopost_path(pg), class: 'button2'
+            link_to 'approve', approve_admin_photopost_path(post), class: 'button2'
           end
         end
       end
@@ -45,7 +47,6 @@ ActiveAdmin.register Photopost do
   end
 
   member_action :approve do
-    photo = Photopost.find_by(id: params[:id])
     resource.approve!
     redirect_to admin_photoposts_path
   end

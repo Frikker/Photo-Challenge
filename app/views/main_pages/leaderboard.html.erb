@@ -1,7 +1,8 @@
+<h1 style="text-align: center"> Leaderboard </h1>
 <table class="leaderboard">
   <% @leaderboard.each do |leader| %>
   <tr>
-    <td class="avatar"><%= image_tag leader[:photo] %></td>
+    <td class="avatar"><%= link_to image_tag(leader[:photo]), user_url(leader[:id]) %></td>
     <td class="name"><%= "#{leader[:first_name]} #{leader[:last_name]}" %></td>
     <td class="link"><%= link_to '', leader[:page], class: "glyphicon glyphicon-cloud" %></td>
     <td class="likes"><%= leader[:likes] %></td>
