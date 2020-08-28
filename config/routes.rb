@@ -15,11 +15,13 @@ Rails.application.routes.draw do
     end
   end
 
+
   root 'main_pages#index'
   get '/leaderboard', to: 'main_pages#leaderboard'
   get '/contact', to: 'main_pages#contacts'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signin', to: 'sessions#new', as: :signin
+  post '/users/search', to: 'users#search', as: :search_user
   delete '/signout', to: 'sessions#destroy', as: :signout
 
   resources :users, only: %i[create destroy show edit]

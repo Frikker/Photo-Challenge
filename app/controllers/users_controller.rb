@@ -22,6 +22,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def search
+      @photoposts = User.try(find(first_name: params[:search])).photoposts
+      /flash[:danger] = 'No users with this name found'
+      redirect_to root_path/
+  end
+
   def update
     @user = User.find(session[:user_id])
     if @user.update(user_params)

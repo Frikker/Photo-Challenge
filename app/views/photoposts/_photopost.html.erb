@@ -1,7 +1,7 @@
 <% if (photopost_counter%3).zero? %>
-  <tr>
+  <div class="photopost-line">
 <% end %>
-  <td id="photopost" class="photopost-<%= photopost.id %>">
+  <div id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
       <% if params[:controller] == 'users' && photopost.aasm_state != 'approved'%>
         <h6> <%= photopost.aasm_state %></h6>
@@ -10,11 +10,24 @@
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
-          <%= image_tag(photopost.picture.url, class: 'photo') if params[:controller] == 'main_pages' %>
-          <%= image_tag(photopost.picture.users.url, class: 'photo') if params[:controller] == 'users' %>
+          <%= link_to(image_tag(photopost.picture.url, class: 'photo'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
+          <%= link_to(image_tag(photopost.picture.users.url, class: 'photo'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'users' %>
         <% end %>
       </div>
       <h5 class="text-content"><%= photopost.content %></h5>
+    </div>
+    <div id="myModal-<%= photopost.id %>" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <p><%= photopost.content %></p>
+          </div>
+          <div class="modal-body">
+            <%= image_tag(photopost.picture.url, style: "max-width: 700px; max-height: 700px;") %>
+          </div>
+        </div>
+      </div>
     </div>
     <ul class="icon-list">
       <li class="left">
@@ -43,7 +56,7 @@
         </span>
         <span class="comments">
           <%= photopost.comments.count %>
-          <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id), onclick: "show_photopost()" %>
+          <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
         </span>
       </li>
     </ul>
@@ -57,9 +70,7 @@
         </div>
       <% end %>
     </div>
-  </td>
-<% if photopost == @photoposts.last && !((@photoposts.count % 3).zero?) %>
-  <% (3 - (@photoposts.count % 3)).times do %>
-    <%= render 'photoposts/empty_photopost_cell' %>
-  <% end %>
+  </div>
+<% if (photopost_counter%3) == 2 %>
+  </div>
 <% end %>

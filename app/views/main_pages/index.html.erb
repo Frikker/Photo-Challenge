@@ -1,23 +1,29 @@
+<div class="service-part">
+  <span><%= paginate @photoposts %></span>
+  <span>
+    <%= form_with url: search_user_path, class: 'search-form' do |f| %>
+      <%= f.text_field :search %>
+      <%= f.submit 'Search' %>
+    <% end %>
+  </span>
+  <span>
+    <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Sort by
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-item"><%= link_to 'By upload date ▼ ', root_path({order_by: 'created_at', order_type: 'desc'}) %></div>
+      <div class="dropdown-item"><%= link_to 'By upload date ▲ ', root_path({order_by: 'created_at', order_type: 'asc'}) %></div>
+      <div class="dropdown-item"><%= link_to 'By rating ▼ ', root_path({order_by: 'rating_count', order_type: 'desc'}) %></div>
+      <div class="dropdown-item"><%= link_to 'By rating ▲ ', root_path({order_by: 'rating_count', order_type: 'asc'}) %></div>
+      <div class="dropdown-item"><%= link_to 'By comments ▼ ', root_path({order_by: 'comments_count', order_type: 'desc'}) %></div>
+      <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
+    </div></span>
+</div>
 <div class="md-col-5">
   <% if @photoposts.any? %>
-    <ul>
-      <li><%= paginate @photoposts %></li>
-      <li>
-        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sort by
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-item"><%= link_to 'By upload date ▼ ', root_path({order_by: 'created_at', order_type: 'desc'}) %></div>
-          <div class="dropdown-item"><%= link_to 'By upload date ▲ ', root_path({order_by: 'created_at', order_type: 'asc'}) %></div>
-          <div class="dropdown-item"><%= link_to 'By rating ▼ ', root_path({order_by: 'rating_count', order_type: 'desc'}) %></div>
-          <div class="dropdown-item"><%= link_to 'By rating ▲ ', root_path({order_by: 'rating_count', order_type: 'asc'}) %></div>
-          <div class="dropdown-item"><%= link_to 'By comments ▼ ', root_path({order_by: 'comments_count', order_type: 'desc'}) %></div>
-          <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
-        </div></li>
-    </ul>
-    <table class="main-page-table">
+    <div class="main-page-table">
       <%= render @photoposts %>
-    </table>
+    </div>
     <%= paginate @photoposts %>
   <% end %>
 </div>

@@ -2,7 +2,7 @@
   <h4 class="user"><%= link_to image_tag(comment.user.image, class: 'avatar'), comment.user %>
   <%= link_to comment.user.first_name, comment.user %></h4>
   <% unless comment.parent_id.nil? %>
-    <h5>Reply to <%= link_to parent_comment(comment.parent_id), "#reply-#{comment.parent_id}", onclick: "highlight(#{comment.parent_id})"%> </h5>
+    <h5>Reply to <%= link_to parent_comment(comment.parent_id), "#reply-#{comment.parent_id}", onmouseover: "highlight(#{comment.parent_id})"%> </h5>
   <% end %>
   <h5 class="content"><%= comment.content %></h5>
   <h6 class="timestamp">
@@ -11,3 +11,15 @@
   <a name="reply-<%=comment.id %>" onclick="show_form(<%= comment.id %>)">Reply</a>
   <div class="form-<%= comment.id %>" style="display: none"><%= render 'comments/comment_form', path_to_create: photopost_comments_reply_path(@photopost.id, comment_id: comment.id) %></div>
 </li>
+
+<script>
+  function show_form(comment_id){
+      $(".form-"+comment_id)[0].style.display = "block";
+  }
+  function highlight(comment_id) {
+      $('#comment-'+comment_id)[0].classList.add('hover');
+      setTimeout(function () {
+          $('#comment-'+comment_id)[0].classList.remove('hover');
+      }, 3000)
+  }
+</script>
