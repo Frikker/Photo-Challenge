@@ -14,6 +14,7 @@ class PhotopostsController < ApplicationController
                                            user: current_user,
                                            remote_picture_url: params[:photopost][:remote_picture_url])
       if @photopost.save
+        current_user.to_active! unless current_user.aasm_state == 'active'
         flash[:success] = 'successfully Uploaded '
       else
         flash[:danger] = 'Something wrong. Try again'

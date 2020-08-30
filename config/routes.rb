@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/signin', to: 'sessions#new', as: :signin
   post '/users/search', to: 'users#search', as: :search_user
   delete '/signout', to: 'sessions#destroy', as: :signout
+  get '/users/:id/report', to: 'users#report', as: :report
 
   resources :users, only: %i[create destroy show edit]
   resources :photoposts, only: %i[create destroy show] do

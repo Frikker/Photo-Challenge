@@ -5,6 +5,7 @@
 # Table name: users
 #
 #  id                 :bigint           not null, primary key
+#  aasm_state         :string
 #  authenticity_token :string
 #  first_name         :string
 #  image              :string

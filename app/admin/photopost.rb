@@ -2,19 +2,8 @@
 
 ActiveAdmin.register Photopost do
   menu priority: 1
-  batch_action 'ban' do |ids|
-    batch_action_collection.find(ids).each do |post|
-      post.ban!
-      PhotopostWorker::DeletePhotopost.perform_in(5.minute, post.id)
-    end
-  end
-
-  batch_action 'approve' do |ids|
-    batch_action_collection.find(ids).each(&:approve!)
-  end
 
   index as: :table do
-    selectable_column
     column :content
     column :photo do |post|
       image_tag post.picture.admin.url unless post.picture.url.nil?

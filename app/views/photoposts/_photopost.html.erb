@@ -6,7 +6,12 @@
       <% if params[:controller] == 'users' && photopost.aasm_state != 'approved'%>
         <h6> <%= photopost.aasm_state %></h6>
       <% else %>
-        <br>
+        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ...
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, photopost_id: photopost.id), photopost_id: photopost.id %></div>
+        </div>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>

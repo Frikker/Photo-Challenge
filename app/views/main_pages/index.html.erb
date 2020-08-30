@@ -1,23 +1,24 @@
 <div class="service-part">
-  <span><%= paginate @photoposts %></span>
-  <span>
-    <%= form_with url: search_user_path, class: 'search-form' do |f| %>
-      <%= f.text_field :search %>
-      <%= f.submit 'Search' %>
-    <% end %>
-  </span>
-  <span>
-    <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Sort by
-    </a>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <div class="dropdown-item"><%= link_to 'By upload date ▼ ', root_path({order_by: 'created_at', order_type: 'desc'}) %></div>
-      <div class="dropdown-item"><%= link_to 'By upload date ▲ ', root_path({order_by: 'created_at', order_type: 'asc'}) %></div>
-      <div class="dropdown-item"><%= link_to 'By rating ▼ ', root_path({order_by: 'rating_count', order_type: 'desc'}) %></div>
-      <div class="dropdown-item"><%= link_to 'By rating ▲ ', root_path({order_by: 'rating_count', order_type: 'asc'}) %></div>
-      <div class="dropdown-item"><%= link_to 'By comments ▼ ', root_path({order_by: 'comments_count', order_type: 'desc'}) %></div>
-      <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
-    </div></span>
+  <%= paginate @photoposts %>
+  <%= form_with url: search_user_path, class: 'search-form' do |f| %>
+    <span>Search:
+      <%= f.text_field :search, class: 'search-field', value: 'Enter value',
+                       onfocus: 'if(this.value == "Enter value"){this.value = "";}',
+                       onblur: 'if(this.value == ""){this.value = "Enter value";}' %>
+      by: <%= f.select :search_by, raw('<option value="id">ID</option><option value="name">Name</option>') %>
+      <%= f.submit 'Search' %></span>
+  <% end %>
+  <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Sort by
+  </a>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <div class="dropdown-item"><%= link_to 'By upload date ▼ ', root_path({order_by: 'created_at', order_type: 'desc'}) %></div>
+    <div class="dropdown-item"><%= link_to 'By upload date ▲ ', root_path({order_by: 'created_at', order_type: 'asc'}) %></div>
+    <div class="dropdown-item"><%= link_to 'By rating ▼ ', root_path({order_by: 'rating_count', order_type: 'desc'}) %></div>
+    <div class="dropdown-item"><%= link_to 'By rating ▲ ', root_path({order_by: 'rating_count', order_type: 'asc'}) %></div>
+    <div class="dropdown-item"><%= link_to 'By comments ▼ ', root_path({order_by: 'comments_count', order_type: 'desc'}) %></div>
+    <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
+  </div>
 </div>
 <div class="md-col-5">
   <% if @photoposts.any? %>

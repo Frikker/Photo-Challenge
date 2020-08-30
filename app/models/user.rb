@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id                 :bigint           not null, primary key
+#  aasm_state         :string
 #  authenticity_token :string
 #  first_name         :string
 #  image              :string
@@ -23,10 +24,30 @@
 #
 
 class User < ApplicationRecord
+  include AASM
+
   has_many :photoposts, dependent: :destroy
   has_many :comments
   has_many :ratings, dependent: :destroy
 
   has_secure_token :authenticity_token
 
+  aasm do
+    state :active
+    state :passive, initial: true
+    state :banned
+    state :reported
+
+    event :ban do
+      transitions from: %i[active passive reported], to: :banned
+    end
+
+    event :to_active do
+      transitions from: %i[passive reported], to: :active
+    end
+
+    event :report do
+      transitions from: %i[active passive], to: :reported
+    end
+  end
 end

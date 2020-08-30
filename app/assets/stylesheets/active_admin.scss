@@ -24,4 +24,7 @@
   &.moderating{ background: darkorange }
   &.banned{ background: darkred }
   &.approved{ background: darkgreen }
+  &.active{ background: darkgreen }
+  &.passive{ background: darkcyan }
+  &.reported{ background: darkorange }
 }

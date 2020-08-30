@@ -6,6 +6,6 @@ class CreateRatings < ActiveRecord::Migration[6.0]
       t.timestamps
     end
 
-    add_index :ratings, [:photopost_id,  :user_id]
+    add_index :ratings, %i[photopost_id user_id]
   end
 end

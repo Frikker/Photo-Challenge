@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_111913) do
+ActiveRecord::Schema.define(version: 2020_08_30_122908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,18 @@ ActiveRecord::Schema.define(version: 2020_07_06_111913) do
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
+  create_table "report_reasons", force: :cascade do |t|
+    t.bigint "reason_id", null: false
+    t.bigint "from_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["from_id"], name: "index_report_reasons_on_from_id"
+    t.index ["reason_id", "from_id", "user_id"], name: "index_report_reasons_on_reason_id_and_from_id_and_user_id"
+    t.index ["reason_id"], name: "index_report_reasons_on_reason_id"
+    t.index ["user_id"], name: "index_report_reasons_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -90,6 +102,7 @@ ActiveRecord::Schema.define(version: 2020_07_06_111913) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "authenticity_token"
+    t.string "aasm_state"
     t.index ["authenticity_token"], name: "index_users_on_authenticity_token", unique: true
     t.index ["token"], name: "index_users_on_token"
     t.index ["uid"], name: "index_users_on_uid"

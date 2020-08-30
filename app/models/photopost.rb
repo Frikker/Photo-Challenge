@@ -50,7 +50,6 @@ class Photopost < ApplicationRecord
     state :moderating, initial: true
     state :approved
     state :banned
-    state :deleted
 
     event :approve do
       transitions from: %i[moderating banned], to: :approved
@@ -58,14 +57,6 @@ class Photopost < ApplicationRecord
 
     event :ban do
       transitions from: %i[moderating approved], to: :banned
-    end
-
-    event :delete do
-      transitions from: %i[banned approved], to: :deleted
-    end
-
-    event :restore do
-      transitions from: :banned, to: :moderating
     end
   end
 end
