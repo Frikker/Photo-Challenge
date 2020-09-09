@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_30_122908) do
+ActiveRecord::Schema.define(version: 2020_08_30_160138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_08_30_122908) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "reason_class"
     t.index ["from_id"], name: "index_report_reasons_on_from_id"
     t.index ["reason_id", "from_id", "user_id"], name: "index_report_reasons_on_reason_id_and_from_id_and_user_id"
     t.index ["reason_id"], name: "index_report_reasons_on_reason_id"

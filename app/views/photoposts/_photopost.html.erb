@@ -10,7 +10,7 @@
             ...
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, photopost_id: photopost.id), photopost_id: photopost.id %></div>
+          <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, photopost_id: photopost.id, report_reason: 'Photopost'), photopost_id: photopost.id %></div>
         </div>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
@@ -34,14 +34,14 @@
         </div>
       </div>
     </div>
-    <ul class="icon-list">
-      <li class="left">
+    <div class="icon-list">
+      <div class="left">
         <h6 class="timestamp">
           Posted <%= time_ago_in_words(photopost.created_at) %> ago.
         </h6>
         <%= link_to image_tag(photopost.user.image, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
-      </li>
-      <li class="right">
+      </div>
+      <div class="right">
         <span class="likes-<%= photopost.id %>">
           <% if check_likes(photopost) %>
             <%= form_with(url: photopost_ratings_path(photopost), class: 'like', method: 'delete', authenticity_token: authenticity_token) do |f|%>
@@ -63,9 +63,10 @@
           <%= photopost.comments.count %>
           <%= link_to image_tag(image_path('comment.svg'), class: 'icon'), photopost_path(photopost.id) %>
         </span>
-      </li>
-    </ul>
+      </div>
+    </div>
     <div class="last-comments">
+      <h5>Recent comments:</h5>
       <% comments = photopost.comments.last(3) %>
       <% comments.each do |comment| %>
         <div class="comment">

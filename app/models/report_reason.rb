@@ -2,12 +2,13 @@
 #
 # Table name: report_reasons
 #
-#  id         :bigint           not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  from_id    :bigint           not null
-#  reason_id  :bigint           not null
-#  user_id    :bigint           not null
+#  id           :bigint           not null, primary key
+#  reason_class :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  from_id      :bigint           not null
+#  reason_id    :bigint           not null
+#  user_id      :bigint           not null
 #
 # Indexes
 #
@@ -21,5 +22,7 @@ class ReportReason < ApplicationRecord
   belongs_to :reason, class_name: 'Photopost', optional: true
   belongs_to :reason, class_name: 'Comment', optional: true
   belongs_to :from, class_name: 'User'
+
+
 
 end

@@ -4,7 +4,7 @@
   <%= image_tag(image_path(@photopost.picture)) %>
   <h5><%= @photopost.content %></h5>
 </div>
-<div class="comments">
+<div class="comments-list">
   <% if @comments.any? %>
     <%= paginate @comments %>
     <ul>
@@ -15,3 +15,15 @@
 </div>
 
 <%= render 'comments/comment_form', path_to_create: photopost_comments_path(params[:id]) %>
+
+<script>
+    function show_form(comment_id){
+        $(".form-"+comment_id)[0].style.display = "block";
+    }
+    function highlight(comment_id) {
+        $('#comment-'+comment_id)[0].classList.add('hover');
+        setTimeout(function () {
+            $('#comment-'+comment_id)[0].classList.remove('hover');
+        }, 3000)
+    }
+</script>

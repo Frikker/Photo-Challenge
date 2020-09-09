@@ -43,17 +43,8 @@ class UsersController < ApplicationController
   end
 
   def report
-    photopost = Photopost.find(params[:photopost_id])
-    photopost_user = photopost.user
-
-    flash[:danger] = 'Why are you reporting yourself?' if current_user == photopost_user
-
-    unless current_user == photopost_user
-      ReportReason.create!(reason_id: photopost.id, from_id: current_user.id, user_id: photopost_user.id)
-      photopost_user.report! unless photopost_user.aasm_state == 'reported'
-      flash[:success] = 'Report sended successfully'
-    end
-
+    Users::Report.run!(reason_id: params[:photopost_id], from_id: current_user.id,
+                       reason_class: params[:report_reason])
     redirect_to request.referrer || root_path
   end
 end
