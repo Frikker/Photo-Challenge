@@ -1,0 +1,20 @@
+
+<table class="report-table">
+  <tr class="table-header">
+    <td>№</td>
+    <td>Reason</td>
+    <td>Content</td>
+    <td>Photo</td>
+    <td>Who sent</td>
+  </tr>
+  <% ReportReason.where(user_id: params[:id]).find_all.each_with_index do |report, index| %>
+    <tr class="table-line">
+      <td><%= index + 1 %></td>
+      <% report_reason = eval "#{report.reason_class}.find(#{report.reason_id})" %>
+      <td><%= report.reason_class %></td>
+      <td><%= report_reason.content %></td>
+      <td><%= image_tag report_reason.picture.url, class: 'photopost-image' if report.reason_class == 'Photopost'%></td>
+      <td><%= link_to User.find(report.from_id).nickname, User.find(report.from_id) %></td>
+    </tr>
+  <% end %>
+</table>

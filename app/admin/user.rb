@@ -11,13 +11,33 @@ ActiveAdmin.register User do
     end
   end
 
-  form do |user|
-    para user.object.first_name + ' ' + user.object.last_name
-    para :nickname
-    tab 'Reports' do |row|
-      report = ReportReason.find_by(user_id: user.object.id)
-      column eval "#{report.reason_class}.find(#{report.reason_id}).content"
-      column image_tag(Photopost.find(report.reason_id).picture.admin.url)
+  form do |f|
+    image_tag f.object.image
+    f.para f.object.first_name + ' ' + f.object.last_name, class: 'reported-name'
+    f.para link_to f.object.nickname, f.object, class: 'name-link'
+    render partial: 'report_table'
+
+    if f.object.banned?
+      f.button 'Restore', formaction: :restore
+    else
+      f.input :ban_reason
+      f.button 'Ban', formaction: :ban
     end
+  end
+
+  member_action :ban, method: :patch do
+    resource.ban_reason = params[:user][:ban_reason]
+    resource.ban!
+    redirect_to edit_admin_user_path(resource.id)
+  end
+
+  member_action :restore, method: :patch do
+    resource.ban_reason = ''
+    if ReportReason.find_by(user_id: resource.id).nil?
+      resource.restore!
+    else
+      resource.report!
+    end
+    redirect_to edit_admin_user_path(resource.id)
   end
 end

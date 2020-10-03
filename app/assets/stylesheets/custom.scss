@@ -36,37 +36,33 @@ h6, h5{
   content: url('../images/vk.svg');
 }
 .service-part{
+  display: flex;
   max-height: 35px;
   margin-bottom: 20px;
-  li{
-    display: inline;
-  }
+  justify-content: space-between;
   .search-form{
     margin: 0 0 10px 0;
-    width: 70%;
+    width: 80%;
     .search-field{
       border-radius: 50px;
-      width: 60%;
+      width: 50%;
     }
   }
 }
-#photopost {
 
-}
 /* header */
 .navbar{
   background-color: #333;
   z-index: 10;
   .navbar-right{
     display: inline-block;
-    max-width: 100%;
+    max-width: 400px;
     li{
       float: right;
     }
     .avatar-link{
-      max-width: 10%;
+      max-width: 12%;
       a {
-        padding: 10px 15px;
         img {
           max-width: 100%;
         }
@@ -193,8 +189,10 @@ body>.container{
           height: 300px;
           .image-content{
             margin-top: 15px;
+            padding-right: 10px;
             height: 200px;
             img{
+              max-width: 100%;
               max-height: 200px;
             }
             text-align: center;

@@ -19,9 +19,9 @@ module Users
       if current_user == report_user
         nil
       else
+        report_user.report! unless report_user.aasm_state == 'reported'
         ReportReason.create!(reason_id: report_model.id, from_id: from_id, user_id: report_user.id,
                              reason_class: reason_class)
-        report_user.report! unless report_user.aasm_state == 'reported'
       end
     end
   end

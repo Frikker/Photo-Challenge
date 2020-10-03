@@ -5,6 +5,7 @@
 #  id                 :bigint           not null, primary key
 #  aasm_state         :string
 #  authenticity_token :string
+#  ban_reason         :string
 #  first_name         :string
 #  image              :string
 #  last_name          :string

@@ -5,6 +5,7 @@
 #  id                 :bigint           not null, primary key
 #  aasm_state         :string
 #  authenticity_token :string
+#  ban_reason         :string
 #  first_name         :string
 #  image              :string
 #  last_name          :string
@@ -42,12 +43,12 @@ class User < ApplicationRecord
       transitions from: %i[active passive reported], to: :banned
     end
 
-    event :to_active do
-      transitions from: %i[passive reported], to: :active
+    event :restore do
+      transitions from: %i[passive reported banned], to: :active
     end
 
     event :report do
-      transitions from: %i[active passive], to: :reported
+      transitions from: %i[active passive banned], to: :reported
     end
   end
 end

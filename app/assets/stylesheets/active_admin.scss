@@ -28,3 +28,31 @@
   &.passive{ background: darkcyan }
   &.reported{ background: darkorange }
 }
+a:link{
+  text-decoration: none;
+}
+.reported-name{
+  color: #730E15;
+  font-size: 24px;
+  letter-spacing: 0.3px;
+}
+.name-link{
+  font-size: 14px;
+}
+.report-table{
+  font-size: 15px;
+  text-align: center;
+}
+.photopost-image{
+  max-width: 300px;
+  max-height: 150px;
+}
+.table-header>td{
+  font-size: 12px;
+  background-color: #B00100;
+  color: white;
+  border: 1px solid black;
+}
+.table-line{
+  vertical-align: middle;
+}

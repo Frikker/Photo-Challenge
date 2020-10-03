@@ -51,12 +51,33 @@ class Photopost < ApplicationRecord
     state :approved
     state :banned
 
+    after_all_transitions :change_user_status
+
     event :approve do
       transitions from: %i[moderating banned], to: :approved
     end
 
     event :ban do
       transitions from: %i[moderating approved], to: :banned
+    end
+  end
+
+  def check_photoposts
+    Photopost.where(user_id: user_id, aasm_state: 'banned').all.count >= 4
+  end
+
+  def change_user_status
+    user = User.find(user_id)
+    if check_photoposts && !user.banned?
+      user.ban_reason = 'You have 4 or more banned posts'
+      user.ban!
+    elsif user.banned?
+      user.ban_reason = ''
+      if ReportReason.where(user_id: user.id).any?
+        user.report!
+      else
+        user.restore!
+      end
     end
   end
 end

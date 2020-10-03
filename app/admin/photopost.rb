@@ -2,6 +2,7 @@
 
 ActiveAdmin.register Photopost do
   menu priority: 1
+  filter :aasm_state, as: :select
 
   index as: :table do
     column :content
@@ -42,7 +43,7 @@ ActiveAdmin.register Photopost do
 
   member_action :ban do
     resource.ban!
-    PhotopostWorker::DeletePhotopost.perform_in(5.minute, params[:id])
+    PhotopostWorker::DeletePhotopost.perform_in(10.minute, params[:id])
     redirect_to admin_photoposts_path
   end
 
