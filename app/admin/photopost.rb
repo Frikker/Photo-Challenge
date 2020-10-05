@@ -12,20 +12,16 @@ ActiveAdmin.register Photopost do
     state_column :aasm_state
     column :moderation do |post|
       columns do
-        if post.aasm_state == 'moderating'
+        if post.moderating?
           column do
             link_to 'approve', approve_admin_photopost_path(post), class: 'button2'
           end
           column do
-            link_to 'ban', ban_admin_photopost_path(post), class: 'button1'
+            link_to 'ban', edit_admin_photopost_path(post), class: 'button1'
           end
-        elsif post.aasm_state == 'approved'
+        elsif post.approved?
           column do
-            link_to 'ban', ban_admin_photopost_path(post), class: 'button1'
-          end
-        elsif post.aasm_state == 'deleted'
-          column do
-            link_to 'restore', restore_admin_photopost_path(post), class: 'button3'
+            link_to 'ban', edit_admin_photopost_path(post), class: 'button1'
           end
         else
           column do
@@ -36,12 +32,15 @@ ActiveAdmin.register Photopost do
     end
   end
 
+  form partial: 'ban_form'
+
   member_action :approve do
+    resource.ban_reason = ''
     resource.approve!
     redirect_to admin_photoposts_path
   end
 
-  member_action :ban do
+  member_action :ban, method: :patch do
     resource.ban!
     PhotopostWorker::DeletePhotopost.perform_in(10.minute, params[:id])
     redirect_to admin_photoposts_path

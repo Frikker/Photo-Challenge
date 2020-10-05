@@ -14,7 +14,7 @@
       <td><%= report.reason_class %></td>
       <td><%= report_reason.content %></td>
       <td><%= image_tag report_reason.picture.url, class: 'photopost-image' if report.reason_class == 'Photopost'%></td>
-      <td><%= link_to User.find(report.from_id).nickname, User.find(report.from_id) %></td>
+      <td><%= link_to User.find(report.from_id).nickname, admin_user_path(report.from_id) %></td>
     </tr>
   <% end %>
 </table>

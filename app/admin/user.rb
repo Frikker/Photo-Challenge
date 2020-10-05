@@ -7,7 +7,7 @@ ActiveAdmin.register User do
     column :nickname
     state_column :aasm_state
     column 'Reports' do |user|
-      link_to 'See reports', edit_admin_user_path(user.id) if user.aasm_state == 'reported'
+      link_to 'See reports', edit_admin_user_path(user.id) if user.reported?
     end
   end
 

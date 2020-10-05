@@ -1,9 +1,9 @@
 <% if (photopost_counter%3).zero? %>
-  <div class="photopost-line">
+  <div class="photopost-line lazyload">
 <% end %>
   <div id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
-      <% if params[:controller] == 'users' && photopost.aasm_state != 'approved'%>
+      <% if params[:controller] == 'users' && !photopost.approved? %>
         <h6> <%= photopost.aasm_state %></h6>
       <% else %>
         <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,3 +80,6 @@
 <% if (photopost_counter%3) == 2 %>
   </div>
 <% end %>
+<script>
+  lazyload();
+</script>
