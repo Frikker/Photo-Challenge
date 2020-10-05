@@ -6,7 +6,7 @@ module PhotopostsHelper
   end
 
   def authenticity_token
-    current_user.authenticity_token unless current_user.nil?
+    current_user&.authenticity_token
   end
 
   class Vkontakte

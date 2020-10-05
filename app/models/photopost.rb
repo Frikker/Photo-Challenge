@@ -25,7 +25,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class Photopost < ApplicationRecord
   include AASM
 
@@ -38,7 +37,7 @@ class Photopost < ApplicationRecord
   validates :content, presence: true, length: { maximum: 500 }
   validates :picture, presence: true
 
-  scope :custom_order, ->(order_by = 'created_at', order_type = 'asc') {
+  scope :custom_order, lambda { |order_by = 'created_at', order_type = 'asc'|
     if order_by.blank?
       order_by = 'created_at'
       order_type = 'asc' if order_type.blank?

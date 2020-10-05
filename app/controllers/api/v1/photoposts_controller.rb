@@ -11,7 +11,6 @@ module Api
       end
 
       def create
-
         validate Photoposts::Create.run(content: params[:photopost][:content],
                                         picture: params[:photopost][:picture],
                                         user: current_user)

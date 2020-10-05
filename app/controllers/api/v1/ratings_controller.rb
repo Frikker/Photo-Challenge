@@ -3,7 +3,6 @@
 module Api
   module V1
     class RatingsController < ApiController
-
       def create
         validate Ratings::Create.run(photopost_id: params[:photopost_id], user_id: @api_user.id) if find_like.nil?
       end

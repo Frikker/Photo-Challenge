@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RatingsController < ApplicationController
   before_action :logged_in_user
   before_action :create_variables

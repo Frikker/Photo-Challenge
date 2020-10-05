@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: report_reasons
@@ -22,6 +24,4 @@ class ReportReason < ApplicationRecord
   belongs_to :reason, class_name: 'Photopost', optional: true
   belongs_to :reason, class_name: 'Comment', optional: true
   belongs_to :from, class_name: 'User'
-
-
 end

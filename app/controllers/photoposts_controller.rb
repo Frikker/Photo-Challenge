@@ -38,5 +38,4 @@ class PhotopostsController < ApplicationController
     @comments = @photopost.comments.page(params[:page])
     @comment_user = User.find(@comment.user_id) unless @comment.nil?
   end
-
 end

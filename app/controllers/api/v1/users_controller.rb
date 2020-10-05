@@ -20,7 +20,6 @@ module Api
         user = User.find(params[:id])
         render json: user, status: :ok
       end
-
     end
   end
 end

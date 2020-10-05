@@ -1,5 +1,5 @@
 <% if (photopost_counter%3).zero? %>
-  <div class="photopost-line lazyload">
+  <div class="photopost-line lazy">
 <% end %>
   <div id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
@@ -15,8 +15,8 @@
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
-          <%= link_to(image_tag(photopost.picture.url, class: 'photo'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
-          <%= link_to(image_tag(photopost.picture.users.url, class: 'photo'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'users' %>
+          <%= link_to(image_tag(photopost.picture.url, class: 'photo'), "#myModal-#{photopost.id}", loading: 'lazy', data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
+          <%= link_to(image_tag(photopost.picture.users.url, class: 'photo'), "#myModal-#{photopost.id}", loading: 'lazy', data:{toggle:"modal"}) if params[:controller] == 'users' %>
         <% end %>
       </div>
       <h5 class="text-content"><%= photopost.content %></h5>
@@ -29,7 +29,7 @@
             <p><%= photopost.content %></p>
           </div>
           <div class="modal-body">
-            <%= image_tag(photopost.picture.url, style: "max-width: 700px; max-height: 700px;") %>
+            <%= image_tag(photopost.picture.url, style: "max-width: 700px; max-height: 700px;", loading: 'lazy') %>
           </div>
         </div>
       </div>
@@ -81,5 +81,4 @@
   </div>
 <% end %>
 <script>
-  lazyload();
 </script>

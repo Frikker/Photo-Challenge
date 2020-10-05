@@ -8,7 +8,7 @@ module ReportWorker
 
     def perform(report_id)
       report = ReportReason.find(report_id)
-      report.destroy! unless report.nil?
+      report&.destroy!
     end
   end
 end
