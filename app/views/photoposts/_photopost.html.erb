@@ -3,16 +3,15 @@
 <% end %>
   <div id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
+      <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        ...
+      </a>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item"><%= link_to 'Delete', photopost_path(photopost.id), method: :delete if photopost.user == current_user && params[:controller] == 'users' %></div>
+        <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, reason_id: photopost.id, report_reason: 'Photopost'), reason_id: photopost.id %></div>
+      </div>
       <% if params[:controller] == 'users' && !photopost.approved? %>
         <h6> <%= photopost.aasm_state %></h6>
-      <% else %>
-        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            ...
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div class="dropdown-item"><%= link_to 'Delete', photopost_path(photopost.id), method: :delete if photopost.user == current_user && params[:controller] == 'users' %></div>
-          <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, reason_id: photopost.id, report_reason: 'Photopost'), reason_id: photopost.id %></div>
-        </div>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
