@@ -12,6 +12,7 @@
       </div>
       <% if params[:controller] == 'users' && !photopost.approved? %>
         <h6> <%= photopost.aasm_state %></h6>
+        <h7> <%= photopost.ban_reason if photopost.banned? %></h7>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
