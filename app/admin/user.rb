@@ -14,7 +14,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    image_tag f.object.image
+    image_tag f.object.take_image
     f.para f.object.first_name + ' ' + f.object.last_name, class: 'reported-name'
     f.para link_to f.object.nickname, f.object, class: 'name-link'
     render partial: 'report_table'
