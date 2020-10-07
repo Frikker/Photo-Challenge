@@ -32,8 +32,17 @@ class User < ApplicationRecord
   has_many :photoposts, dependent: :destroy
   has_many :comments
   has_many :ratings, dependent: :destroy
+  mount_uploader :image, PictureUploader
 
   has_secure_token :authenticity_token
+
+  def take_image
+    if image.identifier.include?('https://')
+      image.identifier
+    else
+      image.url
+    end
+  end
 
   aasm do
     state :active

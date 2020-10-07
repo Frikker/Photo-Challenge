@@ -1,5 +1,5 @@
 <% if (photopost_counter%3).zero? %>
-  <div class="photopost-line lazy">
+  <div class="photopost-line">
 <% end %>
   <div id="photopost" class="photopost-<%= photopost.id %>">
     <div class="content">
@@ -10,13 +10,14 @@
             ...
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <div class="dropdown-item"><%= link_to 'Delete', photopost_path(photopost.id), method: :delete if photopost.user == current_user && params[:controller] == 'users' %></div>
           <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, reason_id: photopost.id, report_reason: 'Photopost'), reason_id: photopost.id %></div>
         </div>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
-          <%= link_to(image_tag(photopost.picture.url, class: 'photo', loading: 'lazy'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
-          <%= link_to(image_tag(photopost.picture.users.url, class: 'photo', loading: 'lazy'), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'users' %>
+          <%= link_to(image_tag(photopost.picture.url, class: 'photo', loading: 'lazy', alt: ''), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
+          <%= link_to(image_tag(photopost.picture.users.url, class: 'photo', loading: 'lazy', alt: ''), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'users' %>
         <% end %>
       </div>
       <h5 class="text-content"><%= photopost.content %></h5>
@@ -39,7 +40,7 @@
         <h6 class="timestamp">
           Posted <%= time_ago_in_words(photopost.created_at) %> ago.
         </h6>
-        <%= link_to image_tag(photopost.user.image, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
+        <%= link_to image_tag(photopost.user.take_image, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
       </div>
       <div class="right">
         <span class="likes-<%= photopost.id %>">
@@ -70,7 +71,7 @@
       <% comments = photopost.comments.last(3) %>
       <% comments.each do |comment| %>
         <div class="comment">
-          <%= link_to image_tag(comment.user.image, class: 'avatar', style: 'width: 5%'), comment.user %>
+          <%= link_to image_tag(comment.user.take_image, class: 'avatar', style: 'width: 5%'), comment.user %>
           <%= link_to comment.user.first_name, comment.user %>
           <%= comment.content %>
         </div>
@@ -80,5 +81,3 @@
 <% if (photopost_counter%3) == 2 %>
   </div>
 <% end %>
-<script>
-</script>

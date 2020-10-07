@@ -5,9 +5,9 @@ class PhotopostsController < ApplicationController
 
   def create
     if params[:photopost][:content].blank?
-      flash[:danger] = 'You forgot about your emotions:) Text something'
+      flash[:danger] = 'Вы забыли про эмоции:) Напишите что-нибудь'
     elsif params[:photopost][:picture].nil? && params[:photopost][:remote_picture_url].blank?
-      flash[:danger] = 'Photo is missing'
+      flash[:danger] = 'А фотография где?'
     else
       @photopost = Photoposts::Create.run!(content: params[:photopost][:content],
                                            picture: params[:photopost][:picture],
@@ -15,24 +15,25 @@ class PhotopostsController < ApplicationController
                                            remote_picture_url: params[:photopost][:remote_picture_url])
       if @photopost.save
         current_user.to_active! unless current_user.active?
-        flash[:success] = 'successfully Uploaded '
+        flash[:success] = 'Пост загружен успешно'
       else
-        flash[:danger] = 'Something wrong. Try again'
+        flash[:danger] = 'Что-то не так. Попробуйте еще раз'
       end
     end
     redirect_to user_url(current_user)
   end
 
   def destroy
-    @photopost.destroy
-    flash[:success] = 'Photopost deleted'
+    photopost = Photopost.find(params[:id])
+    photopost.destroy
+    flash[:success] = 'Пост удален'
     redirect_to request.referrer || root_url
   end
 
   def show
     @photopost = Photopost.find(params[:id])
     if @photopost.user != current_user && !@photopost.approved?
-      flash[:danger] = 'There is no post with that id'
+      flash[:danger] = 'Хитрить удумал? Нет такого поста.'
       redirect_to root_url
     end
     @comments = @photopost.comments.page(params[:page])

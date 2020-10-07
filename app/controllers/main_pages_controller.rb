@@ -2,7 +2,7 @@
 
 class MainPagesController < ApplicationController
   def index
-    @photoposts = Photopost.custom_order(params[:order_by], params[:order_type]).page params[:page]
+    @photoposts = Photopost.custom_order(params[:order_by], params[:order_type]).page(params[:page])
   end
 
   def leaderboard
@@ -21,7 +21,6 @@ class MainPagesController < ApplicationController
         post[0][:likes] += photopost.rating_count
       end
     end
-
     @leaderboard.sort_by { |post| post[:likes] }.reverse
   end
 

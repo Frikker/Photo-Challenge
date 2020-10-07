@@ -1,5 +1,4 @@
 <div class="service-part">
-  <%= paginate @photoposts %>
   <%= form_with url: search_user_path, class: 'search-form' do |f| %>
     Search:
     <%= f.text_field :search, class: 'search-field', value: 'Enter value',
@@ -20,11 +19,10 @@
     <div class="dropdown-item"><%= link_to 'By comments ▲ ', root_path({order_by: 'comments_count', order_type: 'asc'}) %></div>
   </div>
 </div>
-<div class="md-col-5">
-  <% if @photoposts.any? %>
-    <div class="main-page-table">
-      <%= render @photoposts %>
-    </div>
-    <%= paginate @photoposts %>
-  <% end %>
-</div>
+<% if @photoposts.any? %>
+  <%= paginate @photoposts %>
+  <div class="main-page-table">
+    <%= render @photoposts %>
+  </div>
+  <%= paginate @photoposts %>
+<% end %>

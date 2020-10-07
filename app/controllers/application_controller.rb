@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   def logged_in_user
     unless signed_in?
-      flash[:danger] = 'Please sign in'
+      flash[:danger] = 'Войдите с помощью социальной сети'
       redirect_to root_url
     end
   end

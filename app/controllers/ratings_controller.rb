@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
   def destroy
     like = Rating.find_by(user_id: current_user.id, photopost_id: @photopost.id)
     if like.nil?
-      flash[:danger] = 'Something went wrong'
+      flash[:danger] = 'Упс. Что-то пошло не так'
       redirect_back(fallback_location: request.original_url)
     else
       like.destroy

@@ -10,9 +10,9 @@ class CommentsController < ApplicationController
                                     content: comment_params[:content],
                                     parent_id: params[:comment_id].blank? ? nil : params[:comment_id].to_i)
     if @comment.valid?
-      flash[:success] = 'Comment successfully added '
+      flash[:success] = 'Комментарий добавлен'
     else
-      flash[:danger] = 'Something wrong. Try again'
+      flash[:danger] = 'Что-то пошло не так. Попробуйте еще раз'
     end
     redirect_back(fallback_location: root_path)
   end

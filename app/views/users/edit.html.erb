@@ -1,0 +1,43 @@
+<%= form_with model: @user do |f| %>
+  <aside class="col-md-4">
+    <section>
+      <%= image_tag @user.take_image, class: 'user-avatar' %>
+      <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+      <h4><%= @user.photoposts.count %> uploads</h4>
+      <% if @user.photoposts.any? %>
+        <h6><%= @likes %> likes</h6>
+      <% else %>
+        <h6> 0 likes </h6>
+      <% end %>
+    </section>
+  </aside>
+  <div class="col-md-8 section">
+    <div class="first-name">
+      <%= f.label :first_name, class: 'field-name' %>
+      <%= f.text_field :first_name, class: 'input-field' %>
+    </div>
+    <div class="last-name section">
+      <%= f.label :last_name, class: 'field-name' %>
+      <%= f.text_field :last_name, class: 'input-field' %>
+    </div>
+    <div class="image-section section">
+      <%= f.label :image, class: 'field-name' %>
+      <%= f.file_field :image, id: 'upload-button', accept: "image/jpeg,image/gif,image/png" %>
+      <div id="photo-preview"></div>
+    </div>
+    <%= f.submit method: :patch %>
+  </div>
+<% end %>
+<script>
+    window.onload = function () {
+        let div = document.getElementById('photo-preview');
+        document.body.children[0].onchange = function (e) {
+            if (navigator.userAgent.indexOf('MSIE') != -1) {
+                div.innerHTML = '<img id="img" src="' + this.value + '">';
+            } else {
+                window.URL = window.URL || webkitURL;
+                div.innerHTML = '<img id="img" src="' + window.URL.createObjectURL(e.target.files[0]) + '">';
+            }
+        }
+    }
+</script>

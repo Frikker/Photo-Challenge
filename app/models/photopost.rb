@@ -29,8 +29,8 @@ class Photopost < ApplicationRecord
   include AASM
 
   belongs_to :user
-  has_many :comments
-  has_many :rating
+  has_many :comments, dependent: :destroy
+  has_many :rating, dependent: :destroy
   mount_uploader :picture, PictureUploader
 
   validates :user_id, presence: true
