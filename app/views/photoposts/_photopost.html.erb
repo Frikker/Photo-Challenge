@@ -11,8 +11,7 @@
         <div class="dropdown-item"><%= link_to 'Report', report_path(photopost.user, reason_id: photopost.id, report_reason: 'Photopost'), reason_id: photopost.id %></div>
       </div>
       <% if params[:controller] == 'users' && !photopost.approved? %>
-        <h6> <%= photopost.aasm_state %></h6>
-        <h7> <%= photopost.ban_reason if photopost.banned? %></h7>
+        <h6> <%= photopost.aasm_state %>  <%= 'for: ' + photopost.ban_reason if photopost.banned? %></h6>
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>

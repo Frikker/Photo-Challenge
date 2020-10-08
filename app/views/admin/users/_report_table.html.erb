@@ -11,7 +11,11 @@
     <tr class="table-line">
       <td><%= index + 1 %></td>
       <% report_reason = eval "#{report.reason_class}.find(#{report.reason_id})" %>
-      <td><%= report.reason_class %></td>
+      <% if report_reason.class == Photopost %>
+        <td><%= link_to report.reason_class + ' #' + report_reason.id.to_s, report_reason %></td>
+      <% else %>
+        <td><%= link_to report.reason_class, photopost_path(report_reason.photopost_id) %></td>
+      <% end %>
       <td><%= report_reason.content %></td>
       <td><%= image_tag report_reason.picture.url, class: 'photopost-image' if report.reason_class == 'Photopost'%></td>
       <td><%= link_to User.find(report.from_id).nickname, admin_user_path(report.from_id) %></td>

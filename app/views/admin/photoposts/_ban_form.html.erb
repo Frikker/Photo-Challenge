@@ -1,5 +1,5 @@
 <% photopost = Photopost.find(params[:id]) %>
-<%= image_tag photopost.picture.url %>
+<%= image_tag photopost.picture.main_page.url %>
 <%= photopost.content %>
 <%= form_for photopost do |f| %>
   <%= f.text_field :ban_reason, value: '' %>

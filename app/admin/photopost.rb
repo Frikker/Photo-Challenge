@@ -41,6 +41,7 @@ ActiveAdmin.register Photopost do
   end
 
   member_action :ban, method: :patch do
+    resource.ban_reason = params[:photopost][:ban_reason]
     resource.ban!
     PhotopostWorker::DeletePhotopost.perform_in(10.minute, params[:id])
     redirect_to admin_photoposts_path
