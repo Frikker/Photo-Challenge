@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/contact', to: 'main_pages#contacts'
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/signin', to: 'sessions#new', as: :signin
-  post '/users/search', to: 'users#search', as: :search_user
+  get '/search', to: 'main_pages#search', as: :search
   delete '/signout', to: 'sessions#destroy', as: :signout
   get '/users/:id/report', to: 'users#report', as: :report
 

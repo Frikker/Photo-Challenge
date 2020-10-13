@@ -27,16 +27,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def search
-    user = User.find_by(params[:search_by] => params[:search])
-    if user.nil?
-      flash[:danger] = 'Нет такого пользователя'
-      redirect_to root_path
-    end
-    @photoposts = user.photoposts
-    render 'main_pages/index'
-  end
-
   def update
     @user = User.find(session[:user_id])
     if Users::Update.run!(user: @user,

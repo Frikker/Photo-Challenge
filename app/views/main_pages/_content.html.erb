@@ -1,0 +1,7 @@
+<% if @photoposts.any? %>
+  <%= paginate @photoposts %>
+  <div class="main-page-table">
+    <%= render @photoposts %>
+  </div>
+  <%= paginate @photoposts %>
+<% end %>
