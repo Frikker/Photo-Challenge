@@ -30,10 +30,4 @@ class RatingsController < ApplicationController
   def create_variables
     @photopost = Photopost.find(params[:photopost_id])
   end
-
-  def respond
-    respond_to do |format|
-      format.js { render layout: false }
-    end
-  end
 end

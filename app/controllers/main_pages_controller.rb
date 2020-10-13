@@ -35,6 +35,7 @@ class MainPagesController < ApplicationController
       end
       @photoposts = user.photoposts.page
     end
+    respond
   end
 
   def contacts

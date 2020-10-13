@@ -1,12 +1,4 @@
 <div class="service-part">
-  <%= form_with url: search_path, class: 'search-form', method: :get do |f| %>
-    Search:
-    <%= f.text_field :search, class: 'search-field', value: 'Enter value',
-                     onfocus: 'if(this.value == "Enter value"){this.value = "";}',
-                     onblur: 'if(this.value == ""){this.value = "Enter value";}' %>
-    by: <%= f.select :search_by, raw('<option value="content">Content</option><option value="name">Name</option>') %>
-    <%= f.submit 'Search' %>
-  <% end %>
   <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Sort by
   </a>

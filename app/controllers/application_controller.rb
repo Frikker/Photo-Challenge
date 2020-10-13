@@ -19,4 +19,10 @@ class ApplicationController < ActionController::Base
     token = request.headers['token']
     @api_user = User.find_by(authenticity_token: token)
   end
+
+  def respond
+    respond_to do |format|
+      format.js { render layout: false }
+    end
+  end
 end
