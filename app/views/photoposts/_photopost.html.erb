@@ -15,7 +15,7 @@
       <% end %>
       <div class="image-content" data-id="<%= photopost.id %>">
         <% if photopost.picture? %>
-          <%= link_to(image_tag(photopost.picture.url, class: 'photo', loading: 'lazy', alt: ''), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
+          <%= link_to(image_tag(photopost.picture.main_page.url, class: 'photo', loading: 'lazy', alt: ''), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'main_pages' %>
           <%= link_to(image_tag(photopost.picture.users.url, class: 'photo', loading: 'lazy', alt: ''), "#myModal-#{photopost.id}", data:{toggle:"modal"}) if params[:controller] == 'users' %>
         <% end %>
       </div>

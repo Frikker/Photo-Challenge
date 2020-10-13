@@ -21,6 +21,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      flash[:danger] = 'У тебя нет прав это делать!'
+      redirect_to current_user
+    end
   end
 
   def search

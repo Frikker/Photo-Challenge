@@ -8,7 +8,7 @@ module PhotopostWorker
 
     def perform(photopost_id)
       post = Photopost.find(photopost_id)
-      return unless post.banned? || post.deleted?
+      return unless post.banned?
 
       post.destroy
     end

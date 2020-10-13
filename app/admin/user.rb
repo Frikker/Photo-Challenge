@@ -2,12 +2,14 @@
 
 ActiveAdmin.register User do
   menu priority: 2
+  actions :all, except: :new
+  filter :aasm_state, as: :select, label: 'State'
 
   index as: :table do
     column :first_name
     column :last_name
     column :nickname
-    state_column :aasm_state
+    state_column 'State', :aasm_state
     column 'Reports' do |user|
       link_to 'See reports', edit_admin_user_path(user.id) if user.reported?
     end

@@ -12,7 +12,7 @@ class MainPagesController < ApplicationController
       post = @leaderboard.select { |post| post[:page] == photopost.user.urls }
       if post.empty?
         @leaderboard << { id: photopost.user.id,
-                          photo: photopost.user.image,
+                          photo: photopost.user.take_image,
                           first_name: photopost.user.first_name,
                           last_name: photopost.user.last_name,
                           page: photopost.user.urls,

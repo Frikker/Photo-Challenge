@@ -5,10 +5,13 @@ class RatingsController < ApplicationController
   before_action :create_variables
 
   def create
-    return if @photopost.user == current_user
-
-    Ratings::Create.run!(user_id: current_user.id, photopost_id: @photopost.id)
-    respond
+    if @photopost.user == current_user
+      flash[:warning] = 'У нас самолайкать нельзя!'
+      redirect_back(fallback_location: request.original_url)
+    else
+      Ratings::Create.run!(user_id: current_user.id, photopost_id: @photopost.id)
+      respond
+    end
   end
 
   def destroy

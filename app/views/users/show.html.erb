@@ -13,7 +13,7 @@
   </aside>
 
   <div class="col-md-8">
-    <% if @user == current_user %>
+    <% if @user == current_user && !@user.banned?%>
       <%= render 'photoposts/photopost_form' %>
     <% end %>
     <% if @user.photoposts.any? %>

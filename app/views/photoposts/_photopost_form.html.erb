@@ -7,7 +7,7 @@
     <%= f.file_field :picture, accept: "image/jpeg,image/gif,image/png", class: 'image' %>
     <%= f.hidden_field :remote_picture_url, id: 'photo_url' %>
     <%= image_tag '', alt: '', id: 'photo' %>
-    <%= link_to 'Upload from VK', '#', class: 'vk_photo'%>
+    <%= link_to 'Upload from VK', '#', class: 'vk_photo', data: {toggle: 'modal', target: '#vk-photos'}%>
   </span>
   <%= f.submit "Post", class: "btn btn-primary", style: 'margin-top: 1%' %>
 <% end %>

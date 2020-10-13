@@ -2,14 +2,15 @@
 
 ActiveAdmin.register Photopost do
   menu priority: 1
-  filter :aasm_state, as: :select
+  actions :all, except: :new
+  filter :aasm_state, as: :select, label: 'State'
 
   index as: :table do
     column :content
     column :photo do |post|
       image_tag post.picture.admin.url unless post.picture.url.nil?
     end
-    state_column :aasm_state
+    state_column 'State', :aasm_state
     column :moderation do |post|
       columns do
         if post.moderating?
