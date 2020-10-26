@@ -7,11 +7,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :photoposts do
-        get '/ratings', to: 'ratings#index', as: :photoposts_ratings
         resource :ratings, only: %i[create destroy]
         resource :comments, only: %i[create destroy]
       end
       resources :users
+      get '/search', to: 'photoposts#search'
     end
   end
 

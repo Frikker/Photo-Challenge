@@ -28,6 +28,23 @@ module Api
 
         render json: photopost, status: :ok
       end
+
+      def search
+        render json: send("#{params[:search][:controller]}_search")
+      end
+
+      private
+
+      def user_search
+        Photopost.joins(:user)
+                 .where("USERS.#{params[:search][:search_by]} LIKE '%#{params[:search][:search_field]}%'")
+                 .custom_order
+                 .take(20)
+      end
+
+      def post_search
+        Photopost.where("#{params[:search][:search_by]} LIKE '%#{params[:search][:search_field]}%'").take(20)
+      end
     end
   end
 end

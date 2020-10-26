@@ -12,10 +12,9 @@ module Users
     private
 
     def update_user
-      if image.nil?
-        image = user.image
-      end
-      user.update(first_name: first_name, last_name: last_name, image: image)
+      image = user.image if image.nil?
+      user.update!(first_name: first_name, last_name: last_name, image: image)
+      user
     end
   end
 end
