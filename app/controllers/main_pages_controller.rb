@@ -7,7 +7,10 @@ class MainPagesController < ApplicationController
                   else
                     send("#{params[:model]}_search")
                   end.custom_order(params[:order_by], params[:order_type]).page(params[:page])
-
+    if !params[:model].nil? && @photoposts.count.zero?
+      flash[:warning] = 'Найдено 0 постов.'
+      redirect_to root_path
+    end
   end
 
   def leaderboard

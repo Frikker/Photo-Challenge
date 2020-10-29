@@ -13,6 +13,9 @@ module Users
 
     def update_user
       image = user.image if image.nil?
+      if image.identifier.include?('https://')
+        image = image.identifier
+      end
       user.update!(first_name: first_name, last_name: last_name, image: image)
       user
     end
