@@ -12,6 +12,7 @@ ActiveAdmin.register User do
     state_column 'State', :aasm_state
     column 'Reports' do |user|
       link_to 'See reports', edit_admin_user_path(user.id) if user.reported?
+      link_to 'Ban', edit_admin_user_path(user.id)
     end
   end
 
