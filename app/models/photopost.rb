@@ -45,6 +45,18 @@ class Photopost < ApplicationRecord
     where(aasm_state: :approved).order(order_by => order_type)
   }
 
+  scope :user_search, lambda { |search_by, value|
+    joins(:user).where("lower(users.#{search_by}) LIKE '%#{value}%'")
+  }
+
+  scope :post_search, lambda { |search_by, value|
+    where("lower(#{search_by}) LIKE '%#{value}%'")
+  }
+
+  scope :check_photoposts, lambda {
+    where(user_id: user_id, aasm_state: 'banned').all.count >= 4
+  }
+
   aasm do
     state :moderating, initial: true
     state :approved
@@ -61,9 +73,8 @@ class Photopost < ApplicationRecord
     end
   end
 
-  def check_photoposts
-    Photopost.where(user_id: user_id, aasm_state: 'banned').all.count >= 4
-  end
+  private
+
 
   def change_user_status
     user = User.find(user_id)

@@ -30,21 +30,17 @@ module Api
       end
 
       def search
-        render json: send("#{params[:search][:controller]}_search")
+        render json: send("#{params[:search][:model]}_search")
       end
 
-      private
-
       def user_search
-        Photopost.joins(:user)
-                 .where("USERS.#{params[:search][:search_by]} LIKE '%#{params[:search][:search_field]}%'")
-                 .custom_order
-                 .take(20)
+        Photopost.user_search(params[:search][:search_by], params[:search][:value])
       end
 
       def post_search
-        Photopost.where("#{params[:search][:search_by]} LIKE '%#{params[:search][:search_field]}%'").take(20)
+        Photopost.post_search(params[:search][:search_by], params[:search][:value])
       end
+
     end
   end
 end

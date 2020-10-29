@@ -2,7 +2,12 @@
 
 class MainPagesController < ApplicationController
   def index
-    @photoposts = Photopost.custom_order(params[:order_by], params[:order_type]).page(params[:page])
+    @photoposts = if params[:model].nil?
+                    Photopost
+                  else
+                    send("#{params[:model]}_search")
+                  end.custom_order(params[:order_by], params[:order_type]).page(params[:page])
+
   end
 
   def leaderboard
@@ -24,21 +29,15 @@ class MainPagesController < ApplicationController
     @leaderboard.sort_by { |post| post[:likes] }.reverse
   end
 
-  def search
-    if params[:search_by] == 'content'
-      @photoposts = Photopost.where('lower(content) like ?', "%#{params[:search].downcase}%").all.page(params[:page])
-    elsif params[:search_by] == 'name'
-      user = User.find_by_first_name(params[:search])
-      if user.nil?
-        flash[:danger] = 'Нет такого пользователя'
-        redirect_to root_path
-      end
-      @photoposts = user.photoposts.page
-    end
-    respond
-  end
-
   def contacts
     render 'contacts'
+  end
+
+  def user_search
+    Photopost.user_search(params[:search_by], params[:value].downcase)
+  end
+
+  def post_search
+    Photopost.post_search(params[:search_by], params[:value].downcase)
   end
 end
