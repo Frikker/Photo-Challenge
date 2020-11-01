@@ -59,9 +59,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'aasm'
 gem 'active_interaction'
+gem 'active_model_serializers'
+gem 'active_skin'
 gem 'activeadmin'
 gem 'activeadmin_addons'
-gem 'active_skin'
 gem 'bootstrap-sass'
 gem 'carrierwave'
 gem 'devise'
@@ -72,4 +73,4 @@ gem 'omniauth-facebook'
 gem 'omniauth-vkontakte', '>= 1.6.0'
 gem 'sidekiq'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'active_model_serializers'
+gem 'whenever'

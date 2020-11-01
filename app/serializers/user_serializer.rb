@@ -27,4 +27,6 @@
 #
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :urls, :image
+
+  has_many :photoposts
 end

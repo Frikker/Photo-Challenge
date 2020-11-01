@@ -10,6 +10,14 @@
         <h6> 0 likes </h6>
       <% end %>
     </section>
+    <% unless @achievements.empty? %>
+      <section class="achievement-block">
+        <span>Достижения</span>
+        <div class="achievement">
+          <%= render @achievements %>
+        </div>
+      </section>
+    <% end %>
   </aside>
 
   <div class="col-md-8">

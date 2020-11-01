@@ -8,8 +8,10 @@ ActiveAdmin.register Photopost do
   index as: :table do
     column :content
     column :photo do |post|
-      image_tag post.picture.admin.url unless post.picture.url.nil?
+      link_to image_tag(post.picture.admin.url), post.picture.url, target: '_blank' unless post.picture.url.nil?
     end
+    column 'Rating', :rating_count
+    column 'Comments', :comments_count
     state_column 'State', :aasm_state
     column :moderation do |post|
       columns do
@@ -38,6 +40,18 @@ ActiveAdmin.register Photopost do
   member_action :approve do
     resource.ban_reason = ''
     resource.approve!
+    photoposts_counter = resource.user.photoposts
+    if photoposts_counter.count == 1 || (photoposts_counter.count > 1 &&
+        UserAchievement.find_by(achievement_id: Achievement.find_by_name('Первые шаги!'), user_id: resource.user.id).nil?)
+      UserAchievement.create!(user_id: resource.user.id,
+                              photopost_id: resource.id,
+                              achievement_id: Achievement.find_by_name('Первые шаги!').id)
+    elsif photoposts_counter.count == 5 || (photoposts_counter.count > 5 &&
+        UserAchievement.find_by(achievement_id: Achievement.find_by_name('Уже не маленький'), user_id: resource.user.id).nil?)
+      UserAchievement.create!(user_id: resource.user.id,
+                              photopost_id: resource.id,
+                              achievement_id: Achievement.find_by_name('Уже не маленький').id)
+    end
     redirect_to admin_photoposts_path
   end
 

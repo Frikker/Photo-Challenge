@@ -1,4 +1,12 @@
 <h1 style="text-align: center"> Leaderboard </h1>
+<table class="leaderboard-head">
+  <tr>
+    <td class="avatar"></td>
+    <td class="name">Имя</td>
+    <td class="link">Ссылка на соц.сеть</td>
+    <td class="likes">Общее количество лайков</td>
+  </tr>
+</table>
 <table class="leaderboard">
   <% @leaderboard.each do |leader| %>
   <tr>

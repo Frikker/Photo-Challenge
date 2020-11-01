@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
 
-
-#30.times do
-# Photopost.create!(user_id: 1, content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ')
-#end
+Achievement.create!([{ name: 'Первые шаги!', description: 'Ты сделал свой первый пост!', points: 5, medal: 'medal_first_posts.png' },
+                     { name: 'Уже не маленький', description: 'Сделано 5 постов! Ты молодец!', points: 10, medal: 'second_medal_posts.png' },
+                     { name: 'Лучший!', description: 'Ты сделал лучший пост за сутки!', points: 5, medal: 'best_medal.png' },
+                     { name: 'Ваще лучший!', description: 'Твои посты лучшие 5 дней подряд!', points: 25, medal: 'best_medal_level_2.png' }])

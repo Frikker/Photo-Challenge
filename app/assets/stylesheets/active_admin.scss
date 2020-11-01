@@ -56,3 +56,29 @@ a:link{
 .table-line{
   vertical-align: middle;
 }
+.header{
+  font-size: 1.6em;
+}
+.ban-form{
+  text-align: center;
+  .content{
+    margin: 0;
+    font-size: 1.4em;
+  }
+}
+.comments{
+  .comments-header{
+    font-size: 1.6em;
+  }
+  .comment{
+    border-top: 1px solid darkgray;
+    &:first-child{
+      border: none;
+    }
+  }
+}
+.avatar{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}

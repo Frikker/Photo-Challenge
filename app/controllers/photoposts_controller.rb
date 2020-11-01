@@ -32,6 +32,10 @@ class PhotopostsController < ApplicationController
 
   def show
     @photopost = Photopost.find(params[:id])
+    if @photopost.moderating?
+      flash[:warning] = 'Пост проходит модерацию'
+      redirect_back(fallback_location: request.original_url)
+    end
     if @photopost.user != current_user && !@photopost.approved?
       flash[:danger] = 'Хитрить удумал? Нет такого поста.'
       redirect_to root_url

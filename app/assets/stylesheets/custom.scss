@@ -182,6 +182,15 @@ body>.container{
     float: right;
     margin: 1px;
   }
+  .achievement{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .medal{
+      max-height: 80px;
+      max-width: 50px;
+    }
+  }
   .main-page-table{
     margin-top: 1%;
     .photopost-line {
@@ -275,11 +284,12 @@ body>.container{
       }
     }
   }
-  .leaderboard{
-    :first-child{
-      font-size: 1.4em;
-    }
+  .leaderboard, .leaderboard-head{
+    margin: 0;
     tr{
+      .head{
+        font-size: 0.7em;
+      }
       &:hover{
         background: black;
         color: white;
@@ -298,14 +308,22 @@ body>.container{
     }
     text-align: center;
     font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+    .avatar{
+      width: 10%;
+    }
     .name{
-      width: 80%;
+      width: 75%;
     }
     .link{
-      width: 5%;
+      width: 10%;
     }
     .likes{
       width: 5%;
+    }
+  }
+  .leaderboard{
+    :first-child{
+      font-size: 1.4em;
     }
   }
 }

@@ -1,7 +1,27 @@
-<% photopost = Photopost.find(params[:id]) %>
-<%= image_tag photopost.picture.main_page.url %>
-<%= photopost.content %>
-<%= form_for photopost do |f| %>
-  <%= f.text_field :ban_reason, value: '' %>
-  <%= f.submit 'Ban', formaction: :ban %>
-<% end %>
+<div class="ban-form">
+  <% photopost = Photopost.find(params[:id]) %>
+  <%= image_tag photopost.picture.url, style: 'max-width: 800px; max-height: 800px' %>
+  <p class="content"><%= photopost.content %></p>
+  <%= form_for photopost do |f| %>
+    <%= f.text_field :ban_reason, value: '' %>
+    <%= f.submit 'Ban', formaction: :ban %>
+  <% end %>
+</div>
+<div class="comments">
+  <span class="comments-header header", style="text-align: center">Comments</span>
+  <% photopost.comments.each do |comment| %>
+    <div class="comment">
+      <%= link_to comment.user.first_name, edit_admin_user_path(comment.user.id) %>
+      <p class="content"><%= comment.content %></p>
+    </div>
+  <% end %>
+</div>
+<div class="likes">
+  <span class="likes-header header">Likes</span>
+  <% photopost.rating.each do |rating| %>
+    <div class="like">
+      <%= image_tag(rating.user.image.url, class: 'avatar') %>
+      <%= rating.user.first_name + ' ' + rating.user.last_name %>
+    </div>
+  <% end %>
+</div>

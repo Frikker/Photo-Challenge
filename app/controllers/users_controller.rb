@@ -15,8 +15,11 @@ class UsersController < ApplicationController
     else
       @photoposts = @user.photoposts.where.not(aasm_state: 'banned').order(id: :asc).page(params[:page])
     end
+    @achievements = @user.user_achievements
+    @points = 0
+    @achievements.each { |achievement| @points += Achievement.find(achievement.achievement_id).points }
     @likes = 0
-    @photoposts.each { |photopost| @likes += photopost.rating.count }
+    @photoposts.each { |photopost| @likes += photopost.rating_count }
   end
 
   def edit

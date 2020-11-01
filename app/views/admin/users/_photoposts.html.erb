@@ -1,0 +1,13 @@
+<div class="">
+  <% photoposts = User.find(params[:id]).photoposts %>
+  <table>
+    <% photoposts.each do |photopost| %>
+      <tr>
+        <td><%= photopost.content %></td>
+        <td><%= image_tag(photopost.picture.url, style: 'max-height: 200px; max-width: 200px') %></td>
+        <td><%= link_to 'Edit post', edit_admin_photopost_path(photopost.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+
+</div>

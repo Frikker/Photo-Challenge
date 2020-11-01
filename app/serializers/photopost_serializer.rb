@@ -25,8 +25,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class PhotopostSerializer < ActiveModel::Serializer
-  attributes :id, :content, :picture, :user_id
+  attributes :id, :content, :picture
 
   belongs_to :user
+  has_many :rating
   has_many :comments
 end

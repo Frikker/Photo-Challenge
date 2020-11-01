@@ -121,6 +121,7 @@ GEM
     case_transform (0.2)
       activesupport
     childprocess (3.0.0)
+    chronic (0.10.2)
     concurrent-ruby (1.1.6)
     connection_pool (2.2.2)
     crass (1.0.6)
@@ -353,6 +354,8 @@ GEM
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     xdan-datetimepicker-rails (2.5.4)
       jquery-rails
       rails (>= 3.2.16)
@@ -400,6 +403,7 @@ DEPENDENCIES
   tzinfo-data
   web-console (>= 3.3.0)
   webdrivers
+  whenever
 
 RUBY VERSION
    ruby 2.6.3p62

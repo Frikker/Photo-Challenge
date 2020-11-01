@@ -1,7 +1,7 @@
 <div class="post">
   <h4><%= @photopost.user.first_name %> <%= @photopost.user.last_name %></h4>
   <h6><%= time_ago_in_words(@photopost.created_at) %> ago</h6>
-  <%= image_tag(image_path(@photopost.picture)) %>
+  <%= link_to image_tag(image_path(@photopost.picture), style: 'max-width: 800px; max-height: 800px'), @photopost.picture.url, target: '_blank' %>
   <h5><%= @photopost.content %></h5>
 </div>
 <div class="comments-list">

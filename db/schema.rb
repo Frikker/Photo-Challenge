@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_072839) do
+ActiveRecord::Schema.define(version: 2020_10_29_215826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "points"
+    t.string "medal"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -89,6 +98,18 @@ ActiveRecord::Schema.define(version: 2020_10_03_072839) do
     t.index ["reason_id", "from_id", "user_id"], name: "index_report_reasons_on_reason_id_and_from_id_and_user_id"
     t.index ["reason_id"], name: "index_report_reasons_on_reason_id"
     t.index ["user_id"], name: "index_report_reasons_on_user_id"
+  end
+
+  create_table "user_achievements", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "achievement_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "photopost_id"
+    t.index ["achievement_id"], name: "index_user_achievements_on_achievement_id"
+    t.index ["photopost_id"], name: "index_user_achievements_on_photopost_id"
+    t.index ["user_id", "achievement_id"], name: "index_user_achievements_on_user_id_and_achievement_id"
+    t.index ["user_id"], name: "index_user_achievements_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
