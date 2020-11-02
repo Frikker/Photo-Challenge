@@ -7,7 +7,9 @@ task check_likes: :environment do
   Photopost.where("updated_at between '#{Date.today}' and '#{Date.tomorrow}'")
            .where(aasm_state: :approved)
            .find_each do |photopost|
-    best_photopost = photopost if best_photopost.nil? || photopost.rating_count > best_photopost.rating_count
+    if UserAchievement.find_by(photopost_id: photopost.id).nil?
+      best_photopost = photopost if best_photopost.nil? || photopost.rating_count > best_photopost.rating_count
+    end
   end
   if best_photopost.nil?
     puts 'No posts were uploaded.'
