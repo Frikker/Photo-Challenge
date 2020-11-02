@@ -15,6 +15,5 @@ module Api
         render json: outcome.errors, status: :unprocessable_entity
       end
     end
-
   end
 end

@@ -17,7 +17,7 @@ class MainPagesController < ApplicationController
     @photoposts = Photopost.all
     @leaderboard = []
     @photoposts.each do |photopost|
-      post = @leaderboard.select { |post| post[:page] == photopost.user.urls }
+      post = @leaderboard.select { |local_post| local_post[:page] == photopost.user.urls }
       if post.empty?
         @leaderboard << { id: photopost.user.id,
                           photo: photopost.user.take_image,

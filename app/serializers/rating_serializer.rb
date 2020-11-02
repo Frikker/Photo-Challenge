@@ -17,7 +17,8 @@
 #  index_ratings_on_user_id                   (user_id)
 #
 class RatingSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :rating
+
   belongs_to :user
   belongs_to :photopost
 end

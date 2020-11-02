@@ -25,9 +25,13 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :parent_id, :photopost_id, :content
+  attributes :id, :content, :user
 
   belongs_to :photopost
   belongs_to :user
   belongs_to :parent, class_name: 'Comment', optional: true
+
+  class UserSerializer < ActiveModel::Serializer
+    attributes :id, :first_name, :last_name, :image
+  end
 end

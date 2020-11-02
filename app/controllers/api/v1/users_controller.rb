@@ -26,14 +26,12 @@ module Api
         else
           render json: { message: 'Попытка изменить другого пользователя' }, status: :conflict
         end
-
       end
 
       def show
         user = User.find(params[:id])
         render json: user, status: :ok
       end
-
     end
   end
 end

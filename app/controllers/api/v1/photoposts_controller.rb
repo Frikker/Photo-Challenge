@@ -40,7 +40,6 @@ module Api
       def post_search
         Photopost.post_search(params[:search][:search_by], params[:search][:value])
       end
-
     end
   end
 end

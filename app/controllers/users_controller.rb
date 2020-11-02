@@ -11,7 +11,9 @@ class UsersController < ApplicationController
       @photoposts = @user.photoposts.order(aasm_state: :asc).page(params[:page])
       @banned_photoposts = @photoposts.where(aasm_state: 'banned')
       flash[:danger] = "Твой аккаунт заблокирован по причине: #{@user.ban_reason}." if @user.banned?
-      flash[:danger] = "У тебя #{@banned_photoposts.count} постов на удаление. Делай что-нибудь" if @banned_photoposts.any?
+      if @banned_photoposts.any?
+        flash[:danger] = "У тебя #{@banned_photoposts.count} постов на удаление. Делай что-нибудь"
+      end
     else
       @photoposts = @user.photoposts.where.not(aasm_state: 'banned').order(id: :asc).page(params[:page])
     end
