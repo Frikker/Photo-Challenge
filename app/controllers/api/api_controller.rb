@@ -15,5 +15,9 @@ module Api
         render json: outcome.errors, status: :unprocessable_entity
       end
     end
+
+    def find_like
+      Rating.find_by(photopost_id: params[:photopost_id], user_id: @api_user.id)
+    end
   end
 end

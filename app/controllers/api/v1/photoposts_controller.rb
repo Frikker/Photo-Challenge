@@ -6,7 +6,7 @@ module Api
       before_action :logged_in_user, only: %i[create destroy]
 
       def index
-        photoposts = Photopost.custom_order
+        photoposts = Photopost.custom_order(params[:order_by], params[:order_type])
         render json: photoposts, status: :ok
       end
 
@@ -30,7 +30,13 @@ module Api
       end
 
       def search
-        render json: send("#{params[:search][:model]}_search")
+        if params[:search].nil?
+          render json: { message: 'No posts were found',
+                         photoposts: Photopost.custom_order(params[:order_by], params[:order_type]) },
+                 status: :bad_request
+        else
+          render json: { photoposts: send("#{params[:search][:model]}_search") }
+        end
       end
 
       def user_search

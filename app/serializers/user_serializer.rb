@@ -26,7 +26,15 @@
 #  index_users_on_uid                 (uid)
 #
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :urls, :image
+  attributes :id, :first_name, :last_name, :image
+  attribute :urls, key: :social_link
 
-  has_many :photoposts
+  has_many :photoposts do
+    photoposts = []
+    object.photoposts.each do |post|
+      photoposts << { id: post.id, content: post.content, picture: post.picture,
+                      comment_counter: post.comments_count, rating_counter: post.rating_count }
+    end
+    photoposts
+  end
 end

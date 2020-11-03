@@ -4,7 +4,11 @@ module Api
   module V1
     class RatingsController < ApiController
       def create
-        validate Ratings::Create.run(photopost_id: params[:photopost_id], user_id: @api_user.id) if find_like.nil?
+        if find_like.nil?
+          validate Ratings::Create.run(photopost_id: params[:photopost_id], user_id: @api_user.id) if find_like.nil?
+        else
+          render json: { message: 'Post was already liked' }, status: :forbidden
+        end
       end
 
       def destroy
@@ -15,12 +19,6 @@ module Api
           like.delete
           render json: { message: 'Deleted successfully' }, status: :ok
         end
-      end
-
-      private
-
-      def find_like
-        Rating.find_by(photopost_id: params[:photopost_id], user_id: @api_user.id)
       end
     end
   end
