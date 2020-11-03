@@ -5,8 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
-
 Achievement.create!([{ name: 'Первые шаги!', description: 'Ты сделал свой первый пост!', points: 5, medal: 'medal_first_posts.png' },
                      { name: 'Уже не маленький', description: 'Сделано 5 постов! Ты молодец!', points: 10, medal: 'second_medal_posts.png' },
                      { name: 'Лучший!', description: 'Ты сделал лучший пост за сутки!', points: 5, medal: 'best_medal.png' },
