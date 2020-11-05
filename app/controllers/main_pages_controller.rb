@@ -15,7 +15,7 @@ class MainPagesController < ApplicationController
 
   def leaderboard
     @leaderboard = []
-    Photopost.all.each do |photopost|
+    Photopost.all.order(user_id: :asc).each do |photopost|
       post = @leaderboard.select { |local_post| local_post[:page] == photopost.user.urls }
       if post.empty?
         @leaderboard << { id: photopost.user.id,
@@ -27,7 +27,7 @@ class MainPagesController < ApplicationController
         post[0][:likes] += photopost.rating_count
       end
     end
-    @leaderboard.sort_by { |post| post[:likes] }.reverse!
+    @leaderboard = @leaderboard.sort_by { |post| -post[:likes] }
   end
 
   def contacts
