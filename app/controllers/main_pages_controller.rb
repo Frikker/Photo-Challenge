@@ -15,11 +15,19 @@ class MainPagesController < ApplicationController
 
   def leaderboard
     @leaderboard = []
-    User.all.each do |user|
-      @leaderboard << { name: user.first_name + ' ' + user.last_name, photo: user.take_image,
-                        likes: user.ratings.all.count, page: user.urls, id: user.id }
+    Photopost.all.each do |photopost|
+      post = @leaderboard.select { |local_post| local_post[:page] == photopost.user.urls }
+      if post.empty?
+        @leaderboard << { id: photopost.user.id,
+                          photo: photopost.user.take_image,
+                          name: photopost.user.first_name + ' ' + photopost.user.last_name,
+                          page: photopost.user.urls,
+                          likes: photopost.rating_count }
+      else
+        post[0][:likes] += photopost.rating_count
+      end
     end
-    @leaderboard.sort_by { |post| post[:likes] }.reverse
+    @leaderboard.sort_by { |post| post[:likes] }.reverse!
   end
 
   def contacts
