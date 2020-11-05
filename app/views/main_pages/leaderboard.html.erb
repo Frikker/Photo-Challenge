@@ -1,19 +1,19 @@
 <h1 style="text-align: center"> Leaderboard </h1>
 <table class="leaderboard-head">
   <tr>
-    <td class="avatar"></td>
-    <td class="name">Имя</td>
-    <td class="link">Ссылка на соц.сеть</td>
-    <td class="likes">Общее количество лайков</td>
+    <td class="avatar-cell"></td>
+    <td class="name-cell">Имя</td>
+    <td class="link-cell">Ссылка на соц.сеть</td>
+    <td class="likes-cell">Общее количество лайков</td>
   </tr>
 </table>
 <table class="leaderboard">
   <% @leaderboard.each do |leader| %>
   <tr>
-    <td class="avatar"><%= link_to image_tag(leader[:photo]), user_url(leader[:id]) %></td>
-    <td class="name"><%= "#{leader[:first_name]} #{leader[:last_name]}" %></td>
-    <td class="link"><%= link_to '', leader[:page], class: "glyphicon glyphicon-cloud" %></td>
-    <td class="likes"><%= leader[:likes] %></td>
+    <td class="avatar-cell"><%= link_to image_tag(leader[:photo], class: 'avatar'), user_url(leader[:id]) %></td>
+    <td class="name-cell"><%= leader[:name] %></td>
+    <td class="link-cell"><%= link_to '', leader[:page], class: "glyphicon glyphicon-cloud" %></td>
+    <td class="likes-cell"><%= leader[:likes] %></td>
   </tr>
   <% end %>
 </table>

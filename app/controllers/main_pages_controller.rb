@@ -14,20 +14,10 @@ class MainPagesController < ApplicationController
   end
 
   def leaderboard
-    @photoposts = Photopost.all
     @leaderboard = []
-    @photoposts.each do |photopost|
-      post = @leaderboard.select { |local_post| local_post[:page] == photopost.user.urls }
-      if post.empty?
-        @leaderboard << { id: photopost.user.id,
-                          photo: photopost.user.take_image,
-                          first_name: photopost.user.first_name,
-                          last_name: photopost.user.last_name,
-                          page: photopost.user.urls,
-                          likes: photopost.rating_count }
-      else
-        post[0][:likes] += photopost.rating_count
-      end
+    User.all.each do |user|
+      @leaderboard << { name: user.first_name + ' ' + user.last_name, photo: user.take_image,
+                        likes: user.ratings.all.count, page: user.urls, id: user.id }
     end
     @leaderboard.sort_by { |post| post[:likes] }.reverse
   end
