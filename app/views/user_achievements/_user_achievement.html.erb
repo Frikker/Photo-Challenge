@@ -1,4 +1,3 @@
 <%= image_tag image_path(user_achievement.achievement.medal), class: 'medal' %>
-<b class="medal-name"><%= user_achievement.achievement.name == 'Лучший!' ? user_achievement.achievement.name + " за пост №" :
-                                                                           user_achievement.achievement.name %>
-  <%= link_to( user_achievement.photopost.id, photopost_path(user_achievement.photopost.id)) if user_achievement.achievement.name == 'Лучший!' %></b>
+<b class="medal-name"><%= user_achievement.achievement.name %></b>
+<span class="medal-reason">Выдана за пост №<%= link_to( user_achievement.photopost.id, photopost_path(user_achievement.photopost.id)) %> </span>
