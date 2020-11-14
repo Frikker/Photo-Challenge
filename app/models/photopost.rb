@@ -82,13 +82,6 @@ class Photopost < ApplicationRecord
     if check_photoposts && !user.banned?
       user.ban_reason = 'You have 4 or more banned posts'
       user.ban!
-    elsif user.banned?
-      user.ban_reason = ''
-      if ReportReason.where(user_id: user.id).any?
-        user.report!
-      else
-        user.restore!
-      end
     end
   end
 end

@@ -14,7 +14,7 @@ class PhotopostsController < ApplicationController
                                            user: current_user,
                                            remote_picture_url: params[:photopost][:remote_picture_url])
       if @photopost.save
-        current_user.to_active! unless current_user.active?
+        current_user.restore! unless current_user.active?
         flash[:success] = 'Пост загружен успешно'
       else
         flash[:danger] = 'Что-то не так. Попробуйте еще раз'

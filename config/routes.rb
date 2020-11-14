@@ -13,8 +13,8 @@ Rails.application.routes.draw do
       resources :users
       get '/search', to: 'photoposts#search'
     end
+    get '/docs', to: 'api#docs'
   end
-
 
   root 'main_pages#index'
   get '/leaderboard', to: 'main_pages#leaderboard'

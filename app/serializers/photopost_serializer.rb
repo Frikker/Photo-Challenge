@@ -25,25 +25,25 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class PhotopostSerializer < ActiveModel::Serializer
-  attributes :id, :content, :picture, :comments_count, :rating_count
+  attributes :id, :content, :picture, :comments_count, :rating_count, :liked_by_current_user, :comments
 
   belongs_to :user
-  has_many :rating do
-    rating = []
-    object.rating.each do |like|
-      rating << { id: like.id, user: { id: like.user.id, first_name: like.user.first_name,
-                                       last_name: like.user.last_name, image: like.user.image } }
-    end
-    rating
-  end
-  has_many :comments do
+  def comments
     comments = []
-    object.comments.each do |comment|
+    if instance_options[:template] == 'index'
+      object.comments.last(3)
+    else
+      object.comments.all
+    end.each do |comment|
       comments << { id: comment.id, content: comment.content, user: { id: comment.user.id,
                                                                       first_name: comment.user.first_name,
                                                                       last_name: comment.user.last_name,
                                                                       image: comment.user.image } }
     end
     comments
+  end
+
+  def liked_by_current_user
+    object.rating.pluck(:user_id).include?(instance_options[:current_user])
   end
 end

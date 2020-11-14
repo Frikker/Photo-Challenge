@@ -3,11 +3,11 @@
 module Api
   module V1
     class PhotopostsController < ApiController
-      before_action :logged_in_user, only: %i[create destroy]
+      before_action :api_user, only: %i[create destroy]
 
       def index
         photoposts = Photopost.custom_order(params[:order_by], params[:order_type])
-        render json: photoposts, status: :ok
+        render json: photoposts, current_user: api_user.id, status: :ok
       end
 
       def create
@@ -25,8 +25,15 @@ module Api
 
       def show
         photopost = Photopost.find(params[:id])
+        if photopost.moderating?
+          raise ActiveRecord::RecordNotFound unless photopost.user == api_user
 
-        render json: photopost, status: :ok
+          render json: { message: "Post with id #{params[:id]} on moderation" }
+        else
+          render json: photopost, status: :ok, current_user: api_user.id
+        end
+      rescue ActiveRecord::RecordNotFound
+        render json: { message: "Post with id #{params[:id]} is not found" }, status: :not_found
       end
 
       def search
@@ -35,9 +42,11 @@ module Api
                          photoposts: Photopost.custom_order(params[:order_by], params[:order_type]) },
                  status: :bad_request
         else
-          render json: { photoposts: send("#{params[:search][:model]}_search") }
+          render json: { photoposts: send("#{params[:search][:model]}_search") }, current_user: api_user.id
         end
       end
+
+      private
 
       def user_search
         Photopost.user_search(params[:search][:search_by], params[:search][:value])
