@@ -14,30 +14,23 @@ ActiveAdmin.register Photopost do
     column 'Comments', :comments_count
     state_column 'State', :aasm_state
     column :moderation do |post|
-      columns do
-        if post.moderating?
-          column do
-            link_to 'approve', approve_admin_photopost_path(post), class: 'button2'
-          end
-          column do
-            link_to 'ban', edit_admin_photopost_path(post), class: 'button1'
-          end
-        elsif post.approved?
-          column do
-            link_to 'ban', edit_admin_photopost_path(post), class: 'button1'
-          end
-        else
-          column do
-            link_to 'approve', approve_admin_photopost_path(post), class: 'button2'
-          end
-        end
+      link_to 'Moderate', edit_admin_photopost_path(post.id)
+    end
+  end
+
+  form do |f|
+    f.template.render partial: 'ban_form'
+    tabs do
+      tab 'Comments' do
+        render partial: 'comments'
+      end
+      tab 'Rating' do
+        render partial: 'rating'
       end
     end
   end
 
-  form partial: 'ban_form'
-
-  member_action :approve do
+  member_action :approve, method: :patch do
     resource.ban_reason = ''
     resource.approve!
     photoposts_counter = resource.user.photoposts

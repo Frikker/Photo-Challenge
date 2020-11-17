@@ -1,0 +1,9 @@
+<div class="likes">
+  <span class="likes-header header">Likes</span>
+  <% @photopost.rating.each do |rating| %>
+    <div class="like">
+      <%= image_tag(rating.user.image.url, class: 'avatar') %>
+      <%= rating.user.first_name + ' ' + rating.user.last_name %>
+    </div>
+  <% end %>
+</div>

@@ -9,7 +9,9 @@ ActiveAdmin.register User do
     column :first_name
     column :last_name
     column :nickname
-    column 'Social link', :urls
+    column 'Social link' do |u|
+      link_to u.urls, u.urls
+    end
     state_column 'State', :aasm_state
     column 'Moderation' do |user|
       link_to 'Edit', edit_admin_user_path(user.id)
