@@ -14,7 +14,7 @@ ActiveAdmin.register Photopost do
     column 'Comments', :comments_count
     state_column 'State', :aasm_state
     column :moderation do |post|
-      link_to 'Moderate', edit_admin_photopost_path(post.id)
+      link_to 'Change status', edit_admin_photopost_path(post.id)
     end
   end
 
