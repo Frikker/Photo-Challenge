@@ -31,8 +31,7 @@ gem 'kaminari'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem "rspec-rails"
-  gem "rswag-specs"
+
 end
 
 group :development do
@@ -73,7 +72,9 @@ gem 'mini_magick'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte', '>= 1.6.0'
+gem 'rspec-rails'
 gem 'rswag'
+gem 'rswag-specs'
 gem 'sidekiq'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'whenever'
