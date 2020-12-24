@@ -31,3 +31,4 @@ yarn-debug.log*
 .rubocop.yml
 !/config/initializers/omniauth.rb
 app/views/sessions/
+/public/
