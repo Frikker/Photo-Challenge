@@ -1,0 +1,12 @@
+<div class="comments-table">
+  <table>
+    <tr>
+      <td><%= I18n.t('admin.photopost') %></td>
+    </tr>
+    <% ratings.each do |rating| %>
+    <tr>
+      <td><%= rating.photopost_id %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

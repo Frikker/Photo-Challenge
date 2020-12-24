@@ -2,13 +2,13 @@
 
 ActiveAdmin.register Photopost do
   menu priority: 1
-  actions :all, except: :new
+  actions :index, :edit, :show
   filter :aasm_state, as: :select, label: 'State'
 
   index as: :table do
     column :content
     column :photo do |post|
-      link_to image_tag(post.picture.admin.url), post.picture.url, target: '_blank' unless post.picture.url.nil?
+      link_to image_tag(post.picture.admin.url), admin_photopost_path(post.id), target: '_blank' unless post.picture.url.nil?
     end
     column 'Rating', :rating_count
     column 'Comments', :comments_count
@@ -19,7 +19,20 @@ ActiveAdmin.register Photopost do
   end
 
   form do |f|
-    f.template.render partial: 'ban_form'
+    render partial: 'show_form'
+    render partial: 'ban_form'
+    tabs do
+      tab 'Comments' do
+        render partial: 'comments'
+      end
+      tab 'Rating' do
+        render partial: 'rating'
+      end
+    end
+  end
+
+  show do |f|
+    render partial: 'show_form'
     tabs do
       tab 'Comments' do
         render partial: 'comments'

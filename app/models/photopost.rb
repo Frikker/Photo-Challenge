@@ -61,7 +61,9 @@ class Photopost < ApplicationRecord
     state :banned
 
     after_all_transitions :change_user_status
-
+    event :moderate do
+      transitions from: :banned, to: :moderating
+    end
     event :approve do
       transitions from: %i[moderating banned], to: :approved
     end

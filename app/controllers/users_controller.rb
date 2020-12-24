@@ -15,7 +15,7 @@ class UsersController < ApplicationController
         flash[:danger] = "У тебя #{@banned_photoposts.count} постов на удаление. Делай что-нибудь"
       end
     else
-      @photoposts = @user.photoposts.where.not(aasm_state: 'banned').order(id: :asc).page(params[:page])
+      @photoposts = @user.photoposts.where(aasm_state: :approved).order(id: :asc).page(params[:page])
     end
     @achievements = @user.user_achievements
     @points = 0

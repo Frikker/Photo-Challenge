@@ -9,3 +9,5 @@ Achievement.create!([{ name: 'Первые шаги!', description: 'Ты сде
                      { name: 'Уже не маленький', description: 'Сделано 5 постов! Ты молодец!', points: 10, medal: 'second_medal_posts.png' },
                      { name: 'Лучший!', description: 'Ты сделал лучший пост за сутки!', points: 5, medal: 'best_medal.png' },
                      { name: 'Ваще лучший!', description: 'Твои посты лучшие 5 дней подряд!', points: 25, medal: 'best_medal_level_2.png' }])
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

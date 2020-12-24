@@ -1,0 +1,7 @@
+<div class="show_form">
+  <% @photopost = Photopost.find(params[:id]) %>
+  <span class="ban-reason">Ban reason: <%= @photopost.ban_reason %></span>
+  <br/>
+  <%= link_to image_tag(@photopost.picture.url, style: 'max-width: 800px; max-height: 800px'), @photopost.picture.url %>
+  <p class="content"><%= @photopost.content %></p>
+</div>

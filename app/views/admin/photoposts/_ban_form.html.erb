@@ -1,9 +1,8 @@
 <div class="ban-form">
-  <% @photopost = Photopost.find(params[:id]) %>
-  <%= image_tag @photopost.picture.url, style: 'max-width: 800px; max-height: 800px' %>
-  <p class="content"><%= @photopost.content %></p>
   <%= form_for @photopost do |f| %>
     <%= f.submit 'Approve', formaction: :approve, class: 'approve' if @photopost.banned? || @photopost.moderating? %>
+    <br/>
+    <br/>
     <% if @photopost.approved? || @photopost.moderating? %>
       <%= f.text_field :ban_reason, value: '' %>
       <%= f.submit 'Ban', formaction: :ban %>

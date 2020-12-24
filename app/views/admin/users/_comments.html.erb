@@ -1,0 +1,18 @@
+<div class="comments-table">
+  <table>
+    <tr>
+      <td>ID</td>
+      <td><%= I18n.t('admin.content') %></td>
+      <td><%= I18n.t('admin.photopost') %></td>
+      <td><%= I18n.t('admin.parent_comment') %></td>
+    </tr>
+    <% comments.each do |comment| %>
+    <tr>
+      <td><%= comment.id %>></td>
+      <td><%= comment.content %></td>
+      <td><%= comment.photopost_id %></td>
+      <td><%= comment.parent_id %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

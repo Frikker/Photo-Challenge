@@ -39,7 +39,7 @@
         <h6 class="timestamp">
           Posted <%= time_ago_in_words(photopost.created_at) %> ago.
         </h6>
-        <%= link_to image_tag(photopost.user.take_image, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
+        <%= link_to image_tag(photopost.user.image.avatar.url, class: 'avatar') + ' ' + photopost.user.first_name, photopost.user %>
       </div>
       <div class="right">
         <span class="likes-<%= photopost.id %>">
@@ -70,7 +70,7 @@
       <% comments = photopost.comments.last(3) %>
       <% comments.each do |comment| %>
         <div class="comment">
-          <%= link_to image_tag(comment.user.take_image, class: 'avatar', style: 'width: 5%'), comment.user %>
+          <%= link_to image_tag(comment.user.image.avatar.url, class: 'avatar', style: 'width: 5%'), comment.user %>
           <%= link_to comment.user.first_name, comment.user %>
           <%= comment.content %>
         </div>

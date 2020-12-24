@@ -1,7 +1,7 @@
 <%= form_with model: @user do |f| %>
   <aside class="col-md-4">
     <section>
-      <%= image_tag @user.take_image, class: 'user-avatar' %>
+      <%= image_tag @user.image.avatar.url, class: 'user-avatar' %>
       <h3><%= @user.first_name %> <%= @user.last_name %></h3>
       <h4><%= @user.photoposts.count %> uploads</h4>
       <% if @user.photoposts.any? %>

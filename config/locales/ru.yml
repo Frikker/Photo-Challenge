@@ -1,0 +1,21 @@
+ru:
+  admin:
+    photoposts: Посты
+    photopost: Пост
+    users: Пользователи
+    status: Статус
+    first_name: Имя
+    last_name: Фамилия
+    nickname: Псевдоним
+    link: Ссылка на соц сеть
+    moderate: Модерация
+    content: Описание
+    photo:  Фото
+    rating: Рейтинг
+    comments: Комментарий
+    parent_comment: Родительский комментарий
+  views:
+    pagination:
+      first: Начало
+    account: Аккаунт
+    leaderboard: Доска почета

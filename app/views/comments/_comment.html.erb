@@ -1,5 +1,5 @@
 <li id="comment-<%= comment.id %>" class="comment">
-  <h4 class="user"><%= link_to image_tag(comment.user.take_image, class: 'avatar'), comment.user %>
+  <h4 class="user"><%= link_to image_tag(comment.user.image.avatar.url, class: 'avatar'), comment.user %>
   <%= link_to comment.user.first_name, comment.user %></h4>
   <a href="#" class="dropdown-toggle right" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     ...

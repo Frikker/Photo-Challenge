@@ -30,4 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  admin:
+    photoposts: Photoposts
+    users: Users
+    status: Status
+    first_name: First name
+    last_name: Last name
+    nickname: Nickname
+    link: Link
+    moderate: Moderate
+    content: Content
+    photo: Photo
+    rating: Rating
+    comments: Comment
+    parent_comment: Parent comment
+    photopost: Photopost
+  ui:
+    account: Account
+    leaderboard: Leaderboard
+

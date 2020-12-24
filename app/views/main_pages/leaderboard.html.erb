@@ -3,7 +3,6 @@
   <tr>
     <td class="avatar-cell"></td>
     <td class="name-cell">Имя</td>
-    <td class="link-cell">Ссылка на соц.сеть</td>
     <td class="likes-cell">Общее количество лайков</td>
   </tr>
 </table>
@@ -12,7 +11,6 @@
   <tr>
     <td class="avatar-cell"><%= link_to image_tag(leader[:photo], class: 'avatar'), user_url(leader[:id]) %></td>
     <td class="name-cell"><%= leader[:name] %></td>
-    <td class="link-cell"><%= link_to '', leader[:page], class: "glyphicon glyphicon-cloud" %></td>
     <td class="likes-cell"><%= leader[:likes] %></td>
   </tr>
   <% end %>

@@ -19,7 +19,7 @@ class MainPagesController < ApplicationController
       post = @leaderboard.select { |local_post| local_post[:page] == photopost.user.urls }
       if post.empty?
         @leaderboard << { id: photopost.user.id,
-                          photo: photopost.user.take_image,
+                          photo: photopost.user.image.leaderboard_avatar.url,
                           name: photopost.user.first_name + ' ' + photopost.user.last_name,
                           page: photopost.user.urls,
                           likes: photopost.rating_count }

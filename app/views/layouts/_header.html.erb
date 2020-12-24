@@ -6,7 +6,7 @@
 
         <% if signed_in? %>
 
-          <li class="avatar-link"><%= link_to image_tag(current_user.take_image), current_user %></li>
+          <li class="avatar-link"><%= link_to image_tag(current_user.image.avatar.url), current_user, style: 'padding: 10px 0' %></li>
           <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>

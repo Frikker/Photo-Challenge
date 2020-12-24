@@ -24,7 +24,7 @@ module Users
       user.provider = auth['provider']
       user.nickname = auth['extra']['raw_info']['screen_name']
       user.urls = auth['info']['urls']['Vkontakte']
-      user.image = auth['info']['image']
+      user.remote_image_url = auth['info']['image']
     end
 
     def facebook_user(user)
@@ -35,7 +35,7 @@ module Users
       user.uid = auth['uid']
       user.nickname = auth['extra']['raw_info']['username']
       user.urls = auth['extra']['raw_info']['link']
-      user.image = auth['info']['image']
+      user.remote_image_url = auth['info']['image']
     end
 
     def create_auth_token

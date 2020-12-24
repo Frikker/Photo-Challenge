@@ -1,13 +1,20 @@
-<div class="">
-  <% photoposts = User.find(params[:id]).photoposts %>
+<div class="photopost-table">
   <table>
+    <tr>
+      <td>Content</td>
+      <td>Photo</td>
+      <td>Comments</td>
+      <td>Likes</td>
+      <td>Edit</td>
+    </tr>
     <% photoposts.each do |photopost| %>
-      <tr>
+      <tr class="post-row">
         <td><%= photopost.content %></td>
-        <td><%= image_tag(photopost.picture.url, style: 'max-height: 200px; max-width: 200px') %></td>
+        <td><%= link_to image_tag(photopost.picture.users.url, style: 'max-height: 200px; max-width: 200px'), admin_photopost_path(photopost.id), target: '_blank' %></td>
+        <td><%= photopost.comments.count %></td>
+        <td><%= photopost.rating.count %></td>
         <td><%= link_to 'Edit post', edit_admin_photopost_path(photopost.id) %></td>
       </tr>
     <% end %>
   </table>
-
 </div>

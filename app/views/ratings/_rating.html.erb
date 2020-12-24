@@ -1,5 +1,5 @@
 <tr>
-  <td><%= image_tag image_path(rating.user.take_image), class: 'avatar' %></td>
+  <td><%= image_tag image_path(rating.user.image.avatar.url), class: 'avatar' %></td>
   <td><%= rating.user.first_name + ' ' + rating.user.last_name %></td>
   <td><%= user_likes(rating.user.id) %></td>
   <td><%= rating.user.photoposts.count %></td>

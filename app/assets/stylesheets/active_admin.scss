@@ -82,3 +82,13 @@ a:link{
   width: 30px;
   border-radius: 50%;
 }
+
+.photopost-table{
+  .post-row{
+    td{
+      text-align: center;
+      font-size: 14px;
+      border: 1px solid black;
+    }
+  }
+}

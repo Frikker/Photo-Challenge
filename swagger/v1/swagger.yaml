@@ -1,0 +1,47 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{id}":
+    patch:
+      summary: Update User
+      tags:
+      - Users
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: authenticity_token
+        in: header
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Success
+          content: {}
+        '409':
+          description: Попытка изменить другого пользователя
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                image:
+                  type: string
+              required:
+              - id
+servers:
+- url: https://photo-challenge.herokuapp.com
+  variables:
+    defaultHost:
+      default: photo-challenge.herokuapp.com
